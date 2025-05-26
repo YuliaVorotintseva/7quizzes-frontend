@@ -1,0 +1,22 @@
+.button {
+    padding: 1em 2em;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #FFF;
+    border-radius: 5px;
+}
+
+.button__disabled {
+    background-color: #BDBDBD;
+}
+
+.button__available {
+    background-color: #74BBFD;
+}
+
+.button__available:hover {
+    background-color: #49A7FF;
+}
