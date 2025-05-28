@@ -15,6 +15,17 @@
     "preview": "vite preview",
     "prepare": "husky"
   },
+  "lint-staged": {
+    "./**/*.{js,jsx,ts,tsx,css,md,json}": [
+      "prettier --write --config ./.prettierrc.json"
+    ],
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix --max-warnings=0"
+    ],
+    "src/**/*.css": [
+      "stylelint --config ./.stylelintrc.json --max-warnings=0 --fix"
+    ]
+  },
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -39,7 +50,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.2.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.0.0",
+    "lint-staged": "^16.1.0",
     "prettier": "^3.5.3",
     "stylelint": "^16.19.1",
     "stylelint-config-recess-order": "^6.0.0",
