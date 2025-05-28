@@ -13,7 +13,8 @@
     "lint:eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:prettier:fix": "prettier --write .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "lint-staged"
   },
   "lint-staged": {
     "./**/*.{js,jsx,ts,tsx,css,md,json}": [
