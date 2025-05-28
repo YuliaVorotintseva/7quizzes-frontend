@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint . prettier --check .",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:prettier": "prettier --check .",
+    "lint:fix": "npm run lint:eslint:fix && npm run lint:prettier:fix",
+    "lint:eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:prettier:fix": "prettier --write .",
     "preview": "vite preview",
     "prepare": "husky"
   },
