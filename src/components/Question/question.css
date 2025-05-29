@@ -5,10 +5,6 @@
   margin: 57px 97px;
 }
 
-.form__answers input[type="radio"] {
-  display: none;
-}
-
 .question__content,
 label {
   font-family: Roboto, sans-serif;
@@ -44,13 +40,7 @@ label {
   font-weight: 400;
 }
 
-.div__main .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form__answers {
+.form__question {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -58,6 +48,10 @@ label {
   justify-content: space-between;
   width: 100%;
   max-width: 635px;
+}
+
+.form__question input[type="radio"] {
+  display: none;
 }
 
 .radio__button {
@@ -70,9 +64,13 @@ label {
 }
 
 .radio__button:hover {
-  background-color: darkseagreen;
+  background-color: #6495ed;
 }
 
-.div__main .form input[type="radio"]:checked + .radio__button {
-  background-color: cornflowerblue;
+.div__main .form__question input[type="radio"]:checked + .radio__button {
+  background-color: #4169e1;
+}
+
+.div__main .form__question input[type="radio"]:disabled + label {
+  background-color: lightgray;
 }

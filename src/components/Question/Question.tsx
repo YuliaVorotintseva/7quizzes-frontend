@@ -15,15 +15,15 @@ const Question = (props: Props) => {
   const answers = props.answers.map((answer: IAnswer) => {
     return (
       <>
-        <label className="radio__button" key={answer.id}>
-          {answer.text}
-        </label>
         <input
           type="radio"
           name="answers"
           value={answer.id}
           className="radio radio__question"
         />
+        <label className="radio__button" key={answer.id}>
+          {answer.text}
+        </label>
       </>
     );
   });
@@ -41,8 +41,8 @@ const Question = (props: Props) => {
       <div className="div div__description">
         <p className="header__description question__content">{props.text}</p>
       </div>
-      <form action="" className="form">
-        <div className="form__answers">{answers}</div>
+      <form action="" method="post" className="form__question">
+        {answers}
         <Button
           className="submit__answer"
           onClick={() => alert("Answer is accepted")}
