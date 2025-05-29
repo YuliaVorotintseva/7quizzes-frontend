@@ -1,0 +1,28 @@
+.button {
+  width: 190px;
+  height: 55px;
+  padding: 1em 0;
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  background-color: #74bbfd;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.button:disabled {
+  background-color: #bdbdbd;
+}
+
+.button:hover {
+  background-color: #49a7ff;
+}
+
+.submit__answer {
+  margin-top: 50px;
+  margin-bottom: 46px;
+}

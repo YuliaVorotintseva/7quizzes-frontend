@@ -1,0 +1,78 @@
+.div__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 57px 97px;
+}
+
+.form__answers input[type="radio"] {
+  display: none;
+}
+
+.question__content,
+label {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.div__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 57px;
+  margin-bottom: 40px;
+}
+
+.header__question {
+  font-size: 32px;
+}
+
+.header__total-score {
+  font-size: 20px;
+}
+
+.div__description {
+  max-width: 685px;
+  margin-bottom: 35px;
+}
+
+.header__description {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.div__main .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form__answers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 635px;
+}
+
+.radio__button {
+  width: 100%;
+  padding: 17px 25px;
+  cursor: pointer;
+  background-color: #e6f0ff;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.radio__button:hover {
+  background-color: darkseagreen;
+}
+
+.div__main .form input[type="radio"]:checked + .radio__button {
+  background-color: cornflowerblue;
+}
