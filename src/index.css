@@ -1,9 +1,31 @@
 :root {
-  background-color: #e9f4ff;
+  --main-font-color: #393939;
+  --main-background-color: #e9f4ff;
+  --main-light-color: #fff;
+  --button-active-background-color: #06f;
+  --button-hover-background-color: #297fff;
+  --button-onclick-background-color: #005ce5;
+  --button-disabled-background-color: #c1c1c1;
+  --radio-button-normal: #e6f0ff;
+  --radio-button-hover: #d9e8ff;
+  --radio-button-checked: #c0d9ff;
+  --radio-button-disabled: #c1c1c1;
+  --main-font-family: roboto, sans-serif;
+  --text-base: 1rem;
+  --text-header-info: 1.25rem;
+  --text-header-question: 2rem;
+  --text-header-logo: 2.5rem;
+  --font-weight-normal: 400;
+  --font-weight-middle: 500;
+  --font-weight-bold: 700;
+  --line-height-normal: 1;
+  --letter-spacing-normal: 0;
+
+  background-color: var(--main-background-color);
 }
 
 * {
   padding: 0;
   margin: 0;
-  color: #393939;
+  color: var(--main-font-color);
 }

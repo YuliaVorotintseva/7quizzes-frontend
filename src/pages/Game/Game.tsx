@@ -20,7 +20,7 @@ const Game = () => {
         answers={answers}
         questionNumber={1}
         score={0}
-        text="What's your favorite colour?"
+        text="What's my favorite colour?"
       />
     </GameLayout>
   );

@@ -18,10 +18,11 @@ const Question = (props: Props) => {
         <input
           type="radio"
           name="answers"
+          id={answer.id}
           value={answer.id}
           className="radio radio__question"
         />
-        <label className="radio__button" key={answer.id}>
+        <label className="radio__button" key={answer.id} htmlFor={answer.id}>
           {answer.text}
         </label>
       </>
