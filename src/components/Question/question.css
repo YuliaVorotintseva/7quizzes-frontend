@@ -1,0 +1,76 @@
+.question {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 57px 97px;
+}
+
+.question__content,
+label {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.question__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 57px;
+  margin-bottom: 40px;
+}
+
+.question__header-title {
+  font-size: 32px;
+}
+
+.question__total-score {
+  font-size: 20px;
+}
+
+.question__description {
+  max-width: 685px;
+  margin-bottom: 35px;
+}
+
+.header__description {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.form__question {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 635px;
+}
+
+.form__question input[type="radio"] {
+  display: none;
+}
+
+.radio__button {
+  width: 100%;
+  padding: 17px 25px;
+  cursor: pointer;
+  background-color: #e6f0ff;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.radio__button:hover {
+  background-color: #6495ed;
+}
+
+.question :checked + .radio__button {
+  background-color: #4169e1;
+}
+
+.question :disabled + label {
+  background-color: lightgray;
+}
