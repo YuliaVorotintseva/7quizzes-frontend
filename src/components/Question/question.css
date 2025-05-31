@@ -1,4 +1,4 @@
-.div__main {
+.question {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +13,7 @@ label {
   letter-spacing: 0;
 }
 
-.div__header {
+.question__header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,15 +22,15 @@ label {
   margin-bottom: 40px;
 }
 
-.header__question {
+.question__header-title {
   font-size: 32px;
 }
 
-.header__total-score {
+.question__total-score {
   font-size: 20px;
 }
 
-.div__description {
+.question__description {
   max-width: 685px;
   margin-bottom: 35px;
 }
@@ -67,10 +67,10 @@ label {
   background-color: #6495ed;
 }
 
-.div__main .form__question input[type="radio"]:checked + .radio__button {
+.question :checked + .radio__button {
   background-color: #4169e1;
 }
 
-.div__main .form__question input[type="radio"]:disabled + label {
+.question :disabled + label {
   background-color: lightgray;
 }

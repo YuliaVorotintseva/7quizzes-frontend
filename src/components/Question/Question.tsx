@@ -29,17 +29,19 @@ const Question = (props: Props) => {
   });
 
   return (
-    <div className="div__main">
-      <div className="div__header">
-        <p className="header__question question__content">
+    <div className="question">
+      <div className="question__header">
+        <p className="question__header-title question__content">
           Question {props.questionNumber}
         </p>
-        <p className="header__total-score question__content">
+        <p className="question__header-content question__total-score question__content">
           Points: {props.score}
         </p>
       </div>
-      <div className="div div__description">
-        <p className="header__description question__content">{props.text}</p>
+      <div className="question__description">
+        <p className="question__description-content question__content">
+          {props.text}
+        </p>
       </div>
       <form action="" method="post" className="form__question">
         {answers}
