@@ -2,15 +2,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 57px 97px;
+  margin: 57px 5vw;
 }
 
 .question__content,
-label {
-  font-family: Roboto, sans-serif;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0;
+.radio__button {
+  font-family: var(--main-font-family);
+  font-weight: var(--font-weight-middle);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
 }
 
 .question__header {
@@ -23,21 +23,21 @@ label {
 }
 
 .question__header-title {
-  font-size: 32px;
+  font-size: var(--text-header-question);
 }
 
 .question__total-score {
-  font-size: 20px;
+  font-size: var(--text-header-info);
 }
 
 .question__description {
-  max-width: 685px;
+  max-width: 32.7vw;
   margin-bottom: 35px;
 }
 
 .header__description {
-  font-size: 20px;
-  font-weight: 400;
+  font-size: var(--text-header-info);
+  font-weight: var(--font-weight-normal);
 }
 
 .form__question {
@@ -46,8 +46,8 @@ label {
   gap: 15px;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  max-width: 635px;
+  max-width: 33vw;
+  margin-left: 25px;
 }
 
 .form__question input[type="radio"] {
@@ -58,19 +58,19 @@ label {
   width: 100%;
   padding: 17px 25px;
   cursor: pointer;
-  background-color: #e6f0ff;
+  background-color: var(--radio-button-normal);
   border-radius: 10px;
   transition: background-color 0.3s;
 }
 
 .radio__button:hover {
-  background-color: #6495ed;
+  background-color: var(--radio-button-hover);
 }
 
 .question :checked + .radio__button {
-  background-color: #4169e1;
+  background-color: var(--radio-button-checked);
 }
 
 .question :disabled + label {
-  background-color: lightgray;
+  background-color: var(--radio-button-disabled);
 }

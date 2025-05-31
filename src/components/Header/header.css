@@ -4,30 +4,27 @@
   align-items: center;
   justify-content: space-between;
   height: 99px;
-  padding: 0 151px;
-  background-color: #fff;
+  padding: 0 7.85vw;
+  background-color: var(--main-light-color);
 }
 
 .header__logo,
 .header__rules {
-  font-family: Roboto, sans-serif;
+  font-family: var(--main-font-family);
+  line-height: var(--line-height-normal);
   text-transform: capitalize;
+  letter-spacing: var(--letter-spacing-normal);
   text-decoration: none;
 }
 
 .header__logo {
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 1;
-  color: #06f;
-  letter-spacing: 0;
+  font-size: var(--text-header-logo);
+  font-weight: var(--font-weight-bold);
+  color: var(--button-active-background-color);
 }
 
 .header__rules {
-  font-family: Roboto, sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1;
-  color: #393939;
-  letter-spacing: 0;
+  font-size: var(--text-header-info);
+  font-weight: var(--font-weight-normal);
+  color: var(--main-font-color);
 }

@@ -1,6 +1,6 @@
 .main {
   max-width: 45.8vw;
   margin: 147px auto;
-  background-color: #fff;
+  background-color: var(--main-light-color);
   border-radius: 20px;
 }
