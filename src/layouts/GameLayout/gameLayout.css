@@ -4,3 +4,14 @@
   background-color: var(--main-light-color);
   border-radius: 20px;
 }
+
+.start {
+  max-width: 54.2vw;
+  padding: 65px 0;
+  margin: 156px auto;
+}
+
+.end {
+  max-width: 37.87vw;
+  margin: 232px auto;
+}
