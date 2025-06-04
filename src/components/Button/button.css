@@ -32,3 +32,11 @@
   margin-top: 50px;
   margin-bottom: 46px;
 }
+
+.button__start {
+  margin: 0 auto 28px;
+}
+
+.button__end {
+  margin: 0;
+}
