@@ -1,7 +1,5 @@
 import React, { ReactNode } from "react";
 
-import Header from "../../components/Header/Header";
-
 import "./gameLayout.css";
 
 interface GameLayoutProps {
@@ -12,7 +10,6 @@ interface GameLayoutProps {
 const GameLayout = ({ children, className }: GameLayoutProps) => {
   return (
     <>
-      <Header />
       <main className={className ? `main ${className}` : "main"}>
         {children}
       </main>
