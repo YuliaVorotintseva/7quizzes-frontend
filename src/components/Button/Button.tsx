@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from "react";
 import "./button.css";
 
 export type Props = {
-  disabled?: false;
+  disabled?: boolean;
   className: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
   text: string;
@@ -11,9 +11,9 @@ export type Props = {
 const Button = ({ disabled, className, onClick, text }: Props) => {
   return (
     <button
-      className={`button ${className}`}
-      onClick={onClick}
-      disabled={disabled}
+      className={disabled ? "button disabled" : `button ${className}`}
+      onClick={disabled ? () => {} : onClick}
+      disabled={disabled ?? false}
     >
       {text}
     </button>

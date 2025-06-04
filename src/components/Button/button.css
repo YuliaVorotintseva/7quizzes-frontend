@@ -23,7 +23,8 @@
   background-color: var(--button-onclick-background-color);
 }
 
-.button:disabled {
+.button .disabled {
+  cursor: not-allowed;
   background-color: var(--button-disabled-background-color);
 }
 

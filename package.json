@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vitest",
+    "test:watch": "vitest watch",
     "build": "tsc -b && vite build",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -15,7 +17,7 @@
     "preview": "vite preview",
     "prepare": "husky",
     "husky": "husky",
-    "test": "lint-staged"
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "./**/*.{js,jsx,ts,tsx,css,md,json}": [
@@ -36,6 +38,8 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.27.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
@@ -52,13 +56,16 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.2.0",
     "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
     "lint-staged": "^16.1.0",
     "prettier": "^3.5.3",
+    "prop-types": "^15.8.1",
     "stylelint": "^16.19.1",
     "stylelint-config-recess-order": "^6.0.0",
     "stylelint-config-standard": "^38.0.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.32.1",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vitest": "^3.1.4"
   }
 }
