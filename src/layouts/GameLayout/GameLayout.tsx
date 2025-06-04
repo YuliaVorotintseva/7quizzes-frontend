@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 
-import "./gameLayout.css";
 import Header from "../../components/Header/Header";
+
+import "./gameLayout.css";
 
 interface GameLayoutProps {
   children: ReactNode;

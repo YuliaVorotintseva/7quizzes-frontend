@@ -1,7 +1,8 @@
 import React from "react";
 
-import "./gameRules.css";
 import Button from "../Button/Button";
+
+import "./gameRules.css";
 
 const GameRules = () => (
   <div className="rules">
@@ -26,7 +27,11 @@ const GameRules = () => (
         the number of questions expires.
       </p>
     </div>
-    <Button className="button__start" onClick={() => {}} text="Start" />
+    <Button
+      className="rules__button-submit button__start"
+      onClick={() => {}}
+      text="Start"
+    />
   </div>
 );
 

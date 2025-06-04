@@ -1,8 +1,9 @@
 import React from "react";
 
-import "./question.css";
 import Button from "../Button/Button";
 import IAnswer from "../../interfaces/Answer";
+
+import "./question.css";
 
 export type Props = {
   answers: Array<IAnswer>;
