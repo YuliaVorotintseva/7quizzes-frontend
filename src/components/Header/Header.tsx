@@ -1,16 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./header.css";
 
 const Header = () => {
   return (
     <header className="header">
-      <a href="#" className="header__logo">
+      <Link to="/" className="header__logo">
         7 quizzes
-      </a>
-      <a href="#" className="header__rules">
+      </Link>
+      <Link to="/" className="header__rules">
         game rules
-      </a>
+      </Link>
     </header>
   );
 };
