@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../Button/Button";
 import IAnswer from "../../interfaces/Answer";
@@ -13,6 +14,8 @@ export type Props = {
 };
 
 const Question = (props: Props) => {
+  const navigate = useNavigate();
+
   const answers = props.answers.map((answer: IAnswer) => {
     return (
       <>
@@ -49,7 +52,7 @@ const Question = (props: Props) => {
         {answers}
         <Button
           className="submit__answer"
-          onClick={() => alert("Answer is accepted")}
+          onClick={() => navigate("/finish")}
           text="answer"
         />
       </form>
