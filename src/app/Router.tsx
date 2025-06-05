@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Game from "./pages/Game/Game";
-import GameStart from "./pages/GameStart/GameStart";
-import GameEnd from "./pages/GameEnd.tsx/GameEnd";
-import MainLayout from "./layouts/MainLayout/MainLayout";
+import Game from "../pages/Game/Game";
+import GameStart from "../pages/GameStart/GameStart";
+import GameEnd from "../pages/GameEnd.tsx/GameEnd";
+import MainLayout from "../layouts/MainLayout/MainLayout";
 
 const Router = () => (
   <BrowserRouter>
