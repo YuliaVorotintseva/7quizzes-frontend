@@ -6,7 +6,7 @@ import Answer from "../../interfaces/Answer";
 import { startGame } from "../../entities/game/api/GameAPI.mock";
 import MockQuestion from "../../interfaces/MockQuestion";
 
-const isMocked: boolean = import.meta.env.VITE_MOCKED;
+const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
 
 const getMockQuestion = async () => {
   const question = await startGame();
@@ -31,37 +31,20 @@ const Game = () => {
   const [question, setQuestion] = useState(new MockQuestion({}));
   useEffect(() => {
     const loadQuestion = async () => {
-      const mockQuestion = await getMockQuestion();
-      setQuestion(mockQuestion);
+      if (isMocked) {
+        console.log(`EFFECT ${isMocked}`);
+        const mockQuestion = await getMockQuestion();
+        setQuestion(mockQuestion);
+      }
     };
     loadQuestion();
-  }, []);
+  }, [isMocked]);
 
-  const mockAnswers = question.answers.map(
-    (answer) =>
-      new Answer({
-        id: answer.id,
-        text: answer.text,
-        isCorrect: answer.isCorrect,
-        score: answer.score,
-      }),
-  );
-
-  const answers: Array<Answer> = isMocked
-    ? mockAnswers
-    : [
-        new Answer({ id: "1", text: "Red" }),
-        new Answer({ id: "2", text: "Orange" }),
-        new Answer({ id: "3", text: "Yellow" }),
-        new Answer({ id: "4", text: "Green" }),
-        new Answer({ id: "5", text: "Blue", isCorrect: "correct", score: 1 }),
-        new Answer({ id: "6", text: "Violet" }),
-      ];
-
+  console.log(isMocked);
   return (
     <GameLayout>
       <Question
-        answers={answers}
+        answers={question.answers}
         questionNumber={isMocked ? question.number : 1}
         score={0}
         text={isMocked ? question.text : "What's my favorite colour?"}

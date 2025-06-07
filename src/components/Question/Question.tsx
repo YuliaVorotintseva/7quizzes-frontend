@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../Button/Button";
 import IAnswer from "../../interfaces/Answer";
+import Answer from "../Answer/Answer";
 
 import "./question.css";
-import Answer from "../Answer/Answer";
 
 export type Props = {
   answers: Array<IAnswer>;
