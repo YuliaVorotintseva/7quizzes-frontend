@@ -1,8 +1,8 @@
 import data from "../mock-data/RoomAPIData.json";
 
-export const getAllRooms = async () => data;
+export const getAllRooms = () => data;
 
-export const createRoom = async (playerId: string, roomName: string) => {
+export const createRoom = (playerId: string, roomName: string) => {
   return {
     roomId: Math.random().toString(100),
     roomName: roomName,
@@ -10,6 +10,6 @@ export const createRoom = async (playerId: string, roomName: string) => {
   };
 };
 
-export const getRoomById = async (roomId: string) => {
+export const getRoomById = (roomId: string) => {
   return data.find((room) => room.roomId === roomId);
 };

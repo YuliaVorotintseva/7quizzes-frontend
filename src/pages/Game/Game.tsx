@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import GameLayout from "../../layouts/GameLayout/GameLayout";
 import Question from "../../components/Question/Question";
@@ -8,8 +8,8 @@ import MockQuestion from "../../interfaces/MockQuestion";
 
 const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
 
-const getMockQuestion = async () => {
-  const question = await startGame();
+const getMockQuestion = () => {
+  const question = startGame();
   const mockAnswers = question.answersList.map(
     (answer) =>
       new Answer({
@@ -28,19 +28,8 @@ const getMockQuestion = async () => {
 };
 
 const Game = () => {
-  const [question, setQuestion] = useState(new MockQuestion({}));
-  useEffect(() => {
-    const loadQuestion = async () => {
-      if (isMocked) {
-        console.log(`EFFECT ${isMocked}`);
-        const mockQuestion = await getMockQuestion();
-        setQuestion(mockQuestion);
-      }
-    };
-    loadQuestion();
-  }, [isMocked]);
+  const question = isMocked ? getMockQuestion() : new MockQuestion({});
 
-  console.log(isMocked);
   return (
     <GameLayout>
       <Question

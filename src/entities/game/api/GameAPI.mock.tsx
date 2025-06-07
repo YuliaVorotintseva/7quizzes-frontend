@@ -1,16 +1,16 @@
 import data from "../mock-data/GameAPIData.json";
 
-export const getAllQuestions = async () => data;
+export const getAllQuestions = () => data;
 
-export const getQuestionById = async (questionId: string) => {
+export const getQuestionById = (questionId: string) => {
   return data.find((question) => question.questionId === questionId) || null;
 };
 
-export const startGame = async () => {
+export const startGame = () => {
   return data[0];
 };
 
-export const getAnswerOfQuestion = async (answerId: string) => {
+export const getAnswerOfQuestion = (answerId: string) => {
   const question =
     data.find((question) =>
       question.answersList.find((answer) => answer.answerId === answerId),
