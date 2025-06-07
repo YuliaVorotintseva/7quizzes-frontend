@@ -5,8 +5,7 @@
   margin: 57px 5vw;
 }
 
-.question__content,
-.radio__button {
+.question__content {
   font-family: var(--main-font-family);
   font-weight: var(--font-weight-middle);
   line-height: var(--line-height-normal);
@@ -46,31 +45,4 @@
   gap: 15px;
   align-items: center;
   justify-content: space-between;
-  max-width: 33vw;
-  margin-left: 25px;
-}
-
-.form__question input[type="radio"] {
-  display: none;
-}
-
-.radio__button {
-  width: 100%;
-  padding: 17px 25px;
-  cursor: pointer;
-  background-color: var(--radio-button-normal);
-  border-radius: 10px;
-  transition: background-color 0.3s;
-}
-
-.radio__button:hover {
-  background-color: var(--radio-button-hover);
-}
-
-.question :checked + .radio__button {
-  background-color: var(--radio-button-checked);
-}
-
-.question :disabled + label {
-  background-color: var(--radio-button-disabled);
 }

@@ -14,7 +14,7 @@ const GameStart = () => {
       setRules(mockRules);
     };
     loadRules();
-  });
+  }, []);
 
   return (
     <GameLayout className="start">

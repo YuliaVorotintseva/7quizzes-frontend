@@ -35,7 +35,7 @@ const Game = () => {
       setQuestion(mockQuestion);
     };
     loadQuestion();
-  });
+  }, []);
 
   const mockAnswers = question.answers.map(
     (answer) =>

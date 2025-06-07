@@ -1,7 +1,6 @@
 .button {
   width: 190px;
   height: 55px;
-  padding: 1em 0;
   font-family: var(--main-font-family);
   font-size: var(--text-header-info);
   font-weight: var(--font-weight-middle);
@@ -9,6 +8,7 @@
   color: var(--main-light-color, #fff);
   text-transform: capitalize;
   letter-spacing: var(--letter-spacing-normal);
+  cursor: pointer;
   background-color: var(--button-active-background-color);
   border-style: none;
   border-radius: 5px;
