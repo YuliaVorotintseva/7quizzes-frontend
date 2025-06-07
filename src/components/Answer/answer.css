@@ -27,6 +27,6 @@
   background-color: var(--radio-button-checked);
 }
 
-:disabled + label {
+.answer :disabled {
   background-color: var(--radio-button-disabled);
 }
