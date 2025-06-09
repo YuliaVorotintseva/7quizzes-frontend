@@ -1,0 +1,6 @@
+.sign_in {
+  max-width: 39.6vw;
+  margin: 157px auto;
+  background-color: var(--main-light-color);
+  border-radius: 20px;
+}

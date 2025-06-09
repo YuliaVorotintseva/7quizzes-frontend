@@ -1,3 +1,3 @@
 import data from "../mock-data/RulesAPIData.json";
 
-export const getRules = () => data.rules;
+export const getRules = async () => data.rules;
