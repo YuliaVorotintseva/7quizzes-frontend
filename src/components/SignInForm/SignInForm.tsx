@@ -14,13 +14,13 @@ const SignInForm = () => {
       <form className="form__sign_in" method="POST" action="/">
         <p className="title__sign_in">Sign in</p>
         <div className="email__sign_in">
-          <label htmlFor="emain">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             id="email"
             className="email"
             type="email"
             tabIndex={1}
-            required
+            pattern="/^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/"
           />
         </div>
         <PasswordInput />
