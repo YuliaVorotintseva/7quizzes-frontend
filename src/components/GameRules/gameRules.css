@@ -19,7 +19,6 @@
   flex-direction: column;
   gap: 14px;
   justify-content: space-between;
-  height: 226px;
   margin: 40px auto 50px;
   font-size: var(--text-header-info);
   font-weight: var(--font-weight-normal);

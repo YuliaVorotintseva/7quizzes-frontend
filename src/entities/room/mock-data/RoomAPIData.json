@@ -1,0 +1,29 @@
+[
+  {
+    "roomId": "room1",
+    "roomName": "First room",
+    "players": [
+      {
+        "playerId": "player1"
+      },
+      {
+        "playerId": "player2"
+      }
+    ]
+  },
+  {
+    "roomId": "room2",
+    "roomName": "Second room",
+    "players": [
+      {
+        "playerId": "player3"
+      },
+      {
+        "playerId": "player4"
+      },
+      {
+        "playerId": "player5"
+      }
+    ]
+  }
+]

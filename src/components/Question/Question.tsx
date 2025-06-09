@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../Button/Button";
 import IAnswer from "../../interfaces/Answer";
+import Answer from "../Answer/Answer";
 
 import "./question.css";
 
@@ -16,22 +17,9 @@ export type Props = {
 const Question = (props: Props) => {
   const navigate = useNavigate();
 
-  const answers = props.answers.map((answer: IAnswer) => {
-    return (
-      <>
-        <input
-          type="radio"
-          name="answers"
-          id={answer.id}
-          value={answer.id}
-          className="radio radio__question"
-        />
-        <label className="radio__button" key={answer.id} htmlFor={answer.id}>
-          {answer.text}
-        </label>
-      </>
-    );
-  });
+  const answers = props.answers.map((answer: IAnswer, key) => (
+    <Answer id={answer.id} text={answer.text} key={key} />
+  ));
 
   return (
     <div className="question">

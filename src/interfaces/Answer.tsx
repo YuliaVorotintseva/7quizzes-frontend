@@ -14,7 +14,7 @@ class Answer implements IAnswer {
   constructor(params: IAnswer) {
     this.id = params.id;
     this.text = params.text;
-    this.isCorrect = params.isCorrect ?? "incorrect;";
+    this.isCorrect = params.isCorrect ?? "incorrect";
     this.score = params.score ?? 0;
   }
 }

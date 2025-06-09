@@ -1,0 +1,77 @@
+[
+  {
+    "questionId": "q1",
+    "questionNumber": 1,
+    "questionText": "Кто написал Илиаду?",
+    "answersList": [
+      {
+        "answerId": "a1",
+        "answerText": "Вергилий",
+        "isCorrect": "incorrect",
+        "questionScore": 0
+      },
+      {
+        "answerId": "a2",
+        "answerText": "Гомер",
+        "isCorrect": "correct",
+        "questionScore": 1
+      },
+      {
+        "answerId": "a3",
+        "answerText": "Гесиод",
+        "isCorrect": "incorrect",
+        "questionScore": 0
+      }
+    ]
+  },
+  {
+    "questionId": "q2",
+    "questionNumber": 2,
+    "questionText": "Как звали похитителя Елены?",
+    "answersList": [
+      {
+        "answerId": "a4",
+        "answerText": "Менелай",
+        "isCorrect": "incorrect",
+        "questionScore": 0
+      },
+      {
+        "answerId": "a5",
+        "answerText": "Агамемнон",
+        "isCorrect": "incorrect",
+        "questionScore": 0
+      },
+      {
+        "answerId": "a6",
+        "answerText": "Парис",
+        "isCorrect": "correct",
+        "questionScore": 3
+      }
+    ]
+  },
+  {
+    "questionId": "q3",
+    "questionNumber": 3,
+    "questionText": "Кто заступился перед Олимпийцами за Одиссея?",
+    "answersList": [
+      {
+        "answerId": "a7",
+        "answerText": "Афина",
+        "isCorrect": "correct",
+        "questionScore": 5
+      },
+      {
+        "answerId": "a8",
+        "answerText": "Венера",
+        "isCorrect": "incorrect",
+        "questionScore": 0
+      },
+      {
+        "answerId": "a9",
+        "answerText": "Аполлон",
+        "isCorrect": "incorrect",
+        "questionScore": 0
+      }
+    ]
+  }
+]
