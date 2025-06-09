@@ -20,7 +20,7 @@ const SignInForm = () => {
             className="email"
             type="email"
             tabIndex={1}
-            pattern="/^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/"
+            pattern="^[a-zA-Z0-9\.\+\-_]+@[a-z]+\.[a-z]{2,}$"
           />
         </div>
         <PasswordInput />
