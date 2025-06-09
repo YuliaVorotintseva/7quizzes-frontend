@@ -33,6 +33,11 @@
   margin-bottom: 46px;
 }
 
+.submit__sign_in {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
 .button__start {
   margin: 0 auto 28px;
 }
