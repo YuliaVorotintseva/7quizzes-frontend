@@ -31,7 +31,7 @@ const SignInForm = () => {
         />
         <div className="info__sign_in">
           <p>Don’t have an account yet?</p>
-          <Link to="/" className="link__register">
+          <Link to="/registration" className="link__register">
             Register instead
           </Link>
         </div>
