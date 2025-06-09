@@ -22,6 +22,7 @@
 .email__sign_in {
   display: flex;
   flex-direction: column;
+  gap: 5px;
   width: 18.85vw;
   margin-bottom: 15px;
   font-size: 18px;
@@ -32,6 +33,7 @@
   width: 100%;
   height: 32px;
   padding: 8px;
+  font-size: 18px;
   user-select: none;
   outline: none;
   border: 1px solid #83b4ff;
@@ -43,12 +45,11 @@
 }
 
 .info__sign_in {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
   height: 46px;
   margin-bottom: 50px;
+  font-size: var(--text-header-info);
+  text-align: center;
 }
 
 .link__register {
