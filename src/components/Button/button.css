@@ -1,6 +1,7 @@
 .button {
   width: 190px;
   height: 55px;
+  margin-top: 50px;
   font-family: var(--main-font-family);
   font-size: var(--text-header-info);
   font-weight: var(--font-weight-middle);
@@ -23,19 +24,18 @@
   background-color: var(--button-onclick-background-color);
 }
 
-.button .disabled {
+.button.disabled {
+  margin-bottom: 46px;
   cursor: not-allowed;
   background-color: var(--button-disabled-background-color);
 }
 
 .submit__answer {
-  margin-top: 50px;
   margin-bottom: 46px;
 }
 
 .submit__sign_in {
   align-self: center;
-  margin-top: 50px;
   margin-bottom: 20px;
 }
 
