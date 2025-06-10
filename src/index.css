@@ -5,6 +5,8 @@
   --button-active-background-color: #06f;
   --button-hover-background-color: #297fff;
   --button-onclick-background-color: #005ce5;
+  --button-correct-background-color: #ccffe0;
+  --button-incorrect-background-color: #ffd9d9;
   --button-disabled-background-color: #c1c1c1;
   --radio-button-normal: #e6f0ff;
   --radio-button-hover: #d9e8ff;

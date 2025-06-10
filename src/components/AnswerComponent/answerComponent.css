@@ -1,4 +1,5 @@
 .answer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,6 +28,22 @@
   background-color: var(--radio-button-checked);
 }
 
-.answer :disabled {
+.answer.correct {
+  background-color: var(--button-correct-background-color);
+}
+
+.answer.incorrect {
+  background-color: var(--button-incorrect-background-color);
+}
+
+.answer__radio:disabled {
+  cursor: not-allowed;
   background-color: var(--radio-button-disabled);
+}
+
+.answer__img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(-75%) translateY(60%);
 }

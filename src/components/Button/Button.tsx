@@ -11,7 +11,9 @@ export type Props = {
 const Button = ({ disabled, className, onClick, text }: Props) => {
   return (
     <button
-      className={disabled ? "button disabled" : `button ${className}`}
+      className={
+        disabled ? `button ${className} disabled` : `button ${className}`
+      }
       onClick={disabled ? () => {} : onClick}
       disabled={disabled ?? false}
     >

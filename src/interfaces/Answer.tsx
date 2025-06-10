@@ -2,14 +2,14 @@ interface IAnswer {
   id: string;
   text: string;
   isCorrect?: string;
-  score?: number;
+  score: number | 0;
 }
 
 class Answer implements IAnswer {
   id: string;
   text: string;
   isCorrect?: string;
-  score?: number;
+  score: number | 0;
 
   constructor(params: IAnswer) {
     this.id = params.id;
