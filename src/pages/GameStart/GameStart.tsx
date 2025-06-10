@@ -2,25 +2,22 @@ import React, { useEffect, useState } from "react";
 
 import GameLayout from "../../layouts/GameLayout/GameLayout";
 import GameRules from "../../components/GameRules/GameRules";
-import { getRules } from "../../entities/rules/api/RulesAPI.mock";
 import Loader from "../../components/Loader/Loader";
 
 const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
 
 const GameStart = () => {
   const [rules, setRules] = useState(Array<string>);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadRules = async () => {
+    const loadRules = () => {
       setLoading(true);
-      try {
-        const mockRules = await getRules();
-        setRules(mockRules);
-      } catch (error) {
-        console.log(error);
-      }
-      setLoading(false);
+      fetch("/RulesAPIData.json")
+        .then((response) => response.json())
+        .then((response) => setRules(response.rules))
+        .catch((error) => console.log(error))
+        .finally(() => setLoading(false));
     };
     loadRules();
   }, []);

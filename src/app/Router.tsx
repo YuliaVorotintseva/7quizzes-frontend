@@ -12,9 +12,9 @@ const Router = () => (
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<SignInPage />} />
-        <Route path="/start" element={<GameStart />} />
-        <Route path="/game" element={<Game />} />
-        <Route path="/finish" element={<GameEnd />} />
+        <Route path="start" element={<GameStart />} />
+        <Route path="game" element={<Game />} />
+        <Route path="finish" element={<GameEnd />} />
       </Route>
     </Routes>
   </BrowserRouter>
