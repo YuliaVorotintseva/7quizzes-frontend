@@ -33,8 +33,11 @@ body {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
   height: 32px;
   font-size: 18px;
   outline: none;
+  border: 1px solid #83b4ff;
+  border-radius: 10px;
 }
