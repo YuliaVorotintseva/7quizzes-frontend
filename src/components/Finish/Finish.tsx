@@ -17,7 +17,7 @@ const Finish = ({ score }: Props) => {
       <p className="finish__score">Score: {score} points</p>
       <Button
         className="finish__button-submit button__end"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/game")}
         text="Play again"
       />
     </div>
