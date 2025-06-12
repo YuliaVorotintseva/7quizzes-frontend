@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 import Router from "./Router";
 
+import ITotalScore from "../interfaces/ITotalScore";
+
 const TotalScore = createContext<ITotalScore | null>(null);
 
 export const useTotalScore = () => {
