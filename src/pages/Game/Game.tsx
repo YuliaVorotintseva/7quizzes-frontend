@@ -5,7 +5,7 @@ import Question from "../../components/Question/Question";
 import Answer from "../../interfaces/Answer";
 import Loader from "../../components/Loader/Loader";
 import IAnswerRequest from "../../interfaces/IAnswerRequest";
-import { useTotalScore } from "../../app/App";
+import { useTotalScore } from "../../utils/useTotalScore";
 
 const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
 const currentRoomId = "room1";
@@ -87,13 +87,12 @@ const submitAnswer = async (questionId: string, selectedAnswerId: string) => {
 const Game = () => {
   const [question, setQuestion] = useState(new QuestionRequest({}));
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [score, setScore] = useState(0);
   const [nextQuestionId, setNextQuestionId] = useState(null);
   const [goToNextQuestion, setGoToNextQuestion] = useState(false);
   const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(null);
   const [correctAnswerId, setCorrectAnswerId] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const { setTotalScore } = useTotalScore();
+  const { totalScore, setTotalScore } = useTotalScore();
 
   useEffect(() => {
     const loadFirstQuestion = async () => {
@@ -130,10 +129,11 @@ const Game = () => {
       setLoading(true);
       try {
         const response = await submitAnswer(question.id, selectedAnswerId);
-        setScore(
-          selectedAnswerId === response.correctAnswerId ? score + 1 : score,
+        setTotalScore(
+          selectedAnswerId === response.correctAnswerId
+            ? totalScore + 1
+            : totalScore,
         );
-        setTotalScore(score);
         setNextQuestionId(response.nextQuestionId);
         setCorrectAnswerId(response.correctAnswerId);
       } catch (error) {
@@ -176,7 +176,7 @@ const Game = () => {
             correctAnswerId={correctAnswerId}
             selectedAnswerId={selectedAnswerId}
             questionNumber={isMocked ? questionNumber : 1}
-            score={score}
+            score={totalScore}
             text={isMocked ? question.text : "What's my favorite colour?"}
             setSelectedAnswerId={setSelectedAnswerId}
             setGoToNextQuestion={setGoToNextQuestion}
