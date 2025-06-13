@@ -9,7 +9,7 @@ const Header = () => {
       <Link to="/" className="header__logo">
         7 quizzes
       </Link>
-      <Link to="/" className="header__rules">
+      <Link to="/start" className="header__rules">
         game rules
       </Link>
     </header>

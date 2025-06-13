@@ -5,7 +5,7 @@ import "./answerComponent.css";
 export type AnswerProps = {
   id: string;
   text: string;
-  score: number;
+  isCorrect: boolean;
   isSelected: boolean;
   isDisabled: boolean;
   selectAnswer: (id: string) => void;
@@ -14,16 +14,16 @@ export type AnswerProps = {
 const AnswerComponent = ({
   id,
   text,
-  score,
+  isCorrect,
   isSelected,
   isDisabled,
   selectAnswer,
 }: AnswerProps) => {
   const getClassName = () => {
     if (isSelected) {
-      return score > 0 ? "answer correct" : "answer incorrect";
+      return isCorrect ? "answer correct" : "answer incorrect";
     }
-    if (isDisabled && score > 0) {
+    if (isDisabled && isCorrect) {
       return "answer correct";
     }
     return "answer";
@@ -31,13 +31,13 @@ const AnswerComponent = ({
 
   const getIcon = () => {
     if (isSelected) {
-      return score > 0 ? (
+      return isCorrect ? (
         <img className="answer__img" src="/correct.png" />
       ) : (
         <img className="answer__img" src="/incorrect.png" />
       );
     }
-    if (isDisabled && score > 0) {
+    if (isDisabled && isCorrect) {
       return <img className="answer__img" src="/correct.png" />;
     }
   };
