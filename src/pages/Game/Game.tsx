@@ -6,6 +6,11 @@ import Answer from "../../interfaces/Answer";
 import Loader from "../../components/Loader/Loader";
 import IAnswerRequest from "../../interfaces/IAnswerRequest";
 import { useTotalScore } from "../../utils/useTotalScore";
+import {
+  getCorrectAnswerOfQuestion,
+  getQuestionById,
+  startGame,
+} from "../../entities/Game/api/GameAPI.mock";
 
 const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
 const currentRoomId = "room1";
@@ -33,16 +38,21 @@ class QuestionRequest implements IQuestionRequest {
 }
 
 const getQuestion = async (questionId: string) => {
-  const question = await fetch(
-    `http://localhost:8080/rooms/${currentRoomId}/game/question/${questionId}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+  let question;
+  if (isMocked) {
+    question = await getQuestionById(questionId);
+  } else {
+    question = await fetch(
+      `http://localhost:8080/rooms/${currentRoomId}/game/question/${questionId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
       },
-    },
-  ).then((response) => response.json());
+    ).then((response) => response.json());
+  }
 
   const answers: Array<Answer> = question.answersList.map(
     (answer: IAnswerRequest) =>
@@ -63,20 +73,25 @@ const getQuestion = async (questionId: string) => {
 };
 
 const submitAnswer = async (questionId: string, selectedAnswerId: string) => {
-  const response = await fetch(
-    `http://localhost:8080/rooms/${currentRoomId}/game/question/${questionId}/answer`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+  let response;
+  if (isMocked) {
+    response = await getCorrectAnswerOfQuestion(questionId);
+  } else {
+    response = await fetch(
+      `http://localhost:8080/rooms/${currentRoomId}/game/question/${questionId}/answer`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          playerId: userId,
+          answerId: selectedAnswerId,
+        }),
       },
-      body: JSON.stringify({
-        playerId: userId,
-        answerId: selectedAnswerId,
-      }),
-    },
-  ).then((response) => response.json());
+    ).then((response) => response.json());
+  }
 
   return {
     correctAnswerId: response.correctAnswerId,
@@ -91,26 +106,31 @@ const Game = () => {
   const [goToNextQuestion, setGoToNextQuestion] = useState(false);
   const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(null);
   const [correctAnswerId, setCorrectAnswerId] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const { totalScore, setTotalScore } = useTotalScore();
 
   useEffect(() => {
     const loadFirstQuestion = async () => {
       setLoading(true);
       try {
-        const response = await fetch(
-          `http://localhost:8080/rooms/${currentRoomId}/game/start`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
+        let response;
+        if (isMocked) {
+          response = await startGame();
+        } else {
+          response = await fetch(
+            `http://localhost:8080/rooms/${currentRoomId}/game/start`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify({
+                playerId: userId,
+              }),
             },
-            body: JSON.stringify({
-              playerId: userId,
-            }),
-          },
-        ).then((response) => response.json());
+          ).then((response) => response.json());
+        }
 
         const firstQuestion = await getQuestion(response.questionId);
         return setQuestion(firstQuestion);
@@ -175,9 +195,10 @@ const Game = () => {
             answers={question.answers}
             correctAnswerId={correctAnswerId}
             selectedAnswerId={selectedAnswerId}
-            questionNumber={isMocked ? questionNumber : 1}
+            nextQuestionId={nextQuestionId}
+            questionNumber={questionNumber}
             score={totalScore}
-            text={isMocked ? question.text : "What's my favorite colour?"}
+            text={question.text}
             setSelectedAnswerId={setSelectedAnswerId}
             setGoToNextQuestion={setGoToNextQuestion}
           />

@@ -11,6 +11,7 @@ export type Props = {
   answers: Array<Answer>;
   correctAnswerId: string | null;
   selectedAnswerId: string | null;
+  nextQuestionId: string | null;
   questionNumber: number;
   score: number;
   text: string;
@@ -60,7 +61,7 @@ const Question = (props: Props) => {
           }
           className={"submit__answer"}
           onClick={
-            props.questionNumber < 4
+            props.nextQuestionId !== null
               ? () => props.setGoToNextQuestion(true)
               : () => navigate("/finish")
           }

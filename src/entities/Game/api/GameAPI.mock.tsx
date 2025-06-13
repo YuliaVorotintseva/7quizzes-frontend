@@ -1,4 +1,7 @@
-import data from "public/GameAPIData.json";
+import data from "../../../../public/GameAPIData.json";
+
+let index = 0;
+
 export const getAllQuestions = async () => data;
 
 export const getQuestionById = async (questionId: string) => {
@@ -9,12 +12,14 @@ export const startGame = async () => {
   return data[0];
 };
 
-export const getAnswerOfQuestion = async (answerId: string) => {
+export const getCorrectAnswerOfQuestion = async (currentQuestionId: string) => {
   const question =
-    data.find((question) =>
-      question.answersList.find((answer) => answer.answerId === answerId),
-    ) || null;
-  return (
-    question?.answersList.find((answer) => answer.answerId === answerId) || null
+    data.find((question) => question.questionId === currentQuestionId) || null;
+  const correctAnswer = question?.answersList.find(
+    (answer) => answer.isCorrect === "correct",
   );
+  return {
+    correctAnswerId: correctAnswer?.answerId,
+    nextQuestionId: index < data.length - 1 ? data[++index].questionId : null,
+  };
 };
