@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import GameLayout from "../../layouts/GameLayout/GameLayout";
 import GameRules from "../../components/GameRules/GameRules";
 import Loader from "../../components/Loader/Loader";
-
-const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
+import { AppDispatch, RootState } from "../../app/store";
+import { getRules } from "../../entities/Rules/model/rulesActions";
 
 const GameStart = () => {
-  const [rules, setRules] = useState(Array<string>);
-  const [isLoading, setLoading] = useState(true);
+  const dispatch = useDispatch<AppDispatch>();
+  const { isLoading } = useSelector((state: RootState) => state.rules);
 
   useEffect(() => {
-    const loadRules = () => {
-      setLoading(true);
-      fetch("/RulesAPIData.json")
-        .then((response) => response.json())
-        .then((response) => setRules(response.rules))
-        .catch((error) => console.log(error))
-        .finally(() => setLoading(false));
-    };
-    loadRules();
-  }, []);
+    dispatch(getRules());
+  }, [dispatch]);
 
   return (
     <>
@@ -28,9 +21,7 @@ const GameStart = () => {
         <Loader />
       ) : (
         <GameLayout className="start">
-          <GameRules
-            rules={isMocked ? rules : ["Rule 1", "Rule 2", "Rule 3"]}
-          />
+          <GameRules />
         </GameLayout>
       )}
     </>
