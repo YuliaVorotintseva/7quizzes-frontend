@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
 import "./passwordInput.css";
+import useFormField from "../../utils/useFormField";
 
 const PasswordInput = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState("");
+  const passwordField = useFormField();
 
   return (
     <div className="password_input">
@@ -17,8 +18,7 @@ const PasswordInput = () => {
           id="password"
           name="password"
           className="field"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          {...passwordField}
           required
         />
         <button

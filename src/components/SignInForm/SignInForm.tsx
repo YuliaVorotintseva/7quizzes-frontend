@@ -5,9 +5,11 @@ import Button from "../Button/Button";
 
 import "./signInForm.css";
 import PasswordInput from "../PasswordInput/PasswordInput";
+import useFormField from "../../utils/useFormField";
 
 const SignInForm = () => {
   const navigate = useNavigate();
+  const emailField = useFormField();
 
   return (
     <>
@@ -21,6 +23,7 @@ const SignInForm = () => {
             type="email"
             tabIndex={1}
             pattern="^[a-zA-Z0-9\.\+\-_]+@[a-z]+\.[a-z]{2,}$"
+            {...emailField}
           />
         </div>
         <PasswordInput />
