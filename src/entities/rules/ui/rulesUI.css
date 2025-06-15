@@ -1,0 +1,10 @@
+.rules__info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: space-between;
+  margin: 40px auto 50px;
+  font-size: var(--text-header-info);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing-normal);
+}

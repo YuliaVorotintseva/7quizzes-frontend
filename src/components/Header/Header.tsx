@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./header.css";
+import ModalButton from "../ModalButton/ModalButton";
+import RulesUI from "../../entities/rules/ui/RulesUI";
 
 const Header = () => {
   return (
@@ -9,9 +11,7 @@ const Header = () => {
       <Link to="/" className="header__logo">
         7 quizzes
       </Link>
-      <Link to="/start" className="header__rules">
-        game rules
-      </Link>
+      <ModalButton buttonText="game rules" content={<RulesUI />} />
     </header>
   );
 };

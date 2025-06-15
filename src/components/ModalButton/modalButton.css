@@ -1,0 +1,51 @@
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 45.35vw;
+  padding: 75px 4.4vw 70px;
+  font-family: var(--main-font-family);
+  color: var(--main-font-color);
+  background-color: var(--main-light-color);
+  border-radius: 20px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #b5b5b566;
+}
+
+.modal__title {
+  height: 38px;
+  margin: 0 auto;
+  font-size: var(--text-header-question);
+  font-weight: var(--font-weight-middle);
+}
+
+.modal__button {
+  font-family: var(--main-font-family);
+  font-size: var(--text-header-info);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--main-font-color);
+  text-transform: capitalize;
+  letter-spacing: var(--letter-spacing-normal);
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+
+.modal__close-button {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  text-decoration: none;
+  background: none;
+  border: none;
+}
