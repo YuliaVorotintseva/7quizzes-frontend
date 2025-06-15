@@ -12,8 +12,13 @@ const GameStart = () => {
   const { isLoading } = useSelector((state: RootState) => state.rules);
 
   useEffect(() => {
-    dispatch(getRules());
-  }, [dispatch]);
+    if (isLoading) {
+      dispatch(getRules());
+      console.log("loading is true");
+    } else {
+      console.log("loading is false");
+    }
+  }, [dispatch, isLoading]);
 
   return (
     <>

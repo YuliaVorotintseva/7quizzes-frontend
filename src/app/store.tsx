@@ -21,7 +21,7 @@ const rulesReducer = (
       return {
         ...state,
         rules: action.rules || state.rules,
-        isLoading: !action.rules,
+        isLoading: action.rules.length == 0,
       };
     default:
       return state;

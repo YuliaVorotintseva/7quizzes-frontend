@@ -7,6 +7,7 @@ export const getRules =
   (): AppThunk => async (dispatch: Dispatch<GetRulesAction>) => {
     dispatch({
       type: GET_RULES,
+      rules: [],
     });
 
     try {
