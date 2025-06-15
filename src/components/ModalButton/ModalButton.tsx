@@ -12,7 +12,10 @@ const ModalButton = (props: ModalButtonProps) => {
 
   return (
     <>
-      {isOpen ? (
+      <button className="modal__button" onClick={() => setIsOpen(!isOpen)}>
+        {props.buttonText}
+      </button>
+      {isOpen && (
         <div className="overlay">
           <div className="modal">
             <button
@@ -36,10 +39,6 @@ const ModalButton = (props: ModalButtonProps) => {
             {props.content}
           </div>
         </div>
-      ) : (
-        <button className="modal__button" onClick={() => setIsOpen(!isOpen)}>
-          {props.buttonText}
-        </button>
       )}
     </>
   );
