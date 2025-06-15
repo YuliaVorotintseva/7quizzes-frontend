@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 
 import { GET_RULES, GetRulesAction } from "./actionTypes";
-import { AppThunk } from "../../../app/store";
+import { AppThunk } from "../../../app/storeTypes";
 
 export const getRules =
   (): AppThunk => async (dispatch: Dispatch<GetRulesAction>) => {
