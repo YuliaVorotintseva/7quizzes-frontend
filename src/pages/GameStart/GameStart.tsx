@@ -4,19 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import GameLayout from "../../layouts/GameLayout/GameLayout";
 import GameRules from "../../components/GameRules/GameRules";
 import Loader from "../../components/Loader/Loader";
-import { AppDispatch, RootState } from "../../app/store";
-import { getRules } from "../../entities/Rules/model/rulesActions";
+import { getRules } from "../../entities/rules/model/rulesActions";
+import { AppDispatch, RootState } from "../../app/storeTypes";
 
 const GameStart = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading } = useSelector((state: RootState) => state.rules);
+  const { isLoading } = useSelector((state: RootState) => state.rulesReducer);
 
   useEffect(() => {
     if (isLoading) {
       dispatch(getRules());
-      console.log("loading is true");
-    } else {
-      console.log("loading is false");
     }
   }, [dispatch, isLoading]);
 

@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 
-import { GET_RULES, GetRulesAction } from "../../../app/types";
+import { GET_RULES, GetRulesAction } from "./actionTypes";
 import { AppThunk } from "../../../app/store";
 
 export const getRules =

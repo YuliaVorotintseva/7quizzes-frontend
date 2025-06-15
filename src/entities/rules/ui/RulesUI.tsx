@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AppDispatch, RootState } from "../../../app/store";
-import { getRules } from "../model/rulesActions";
+import { getRules } from "../../../entities/rules/model/rulesActions";
+import { AppDispatch, RootState } from "../../../app/storeTypes";
 import Loader from "../../../components/Loader/Loader";
 
 import "./rulesUI.css";
 
 const RulesUI = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { rules, isLoading } = useSelector((state: RootState) => state.rules);
+  const { rules, isLoading } = useSelector(
+    (state: RootState) => state.rulesReducer,
+  );
 
   useEffect(() => {
     if (isLoading) {

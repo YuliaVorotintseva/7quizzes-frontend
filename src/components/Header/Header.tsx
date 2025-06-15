@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./header.css";
 import ModalButton from "../ModalButton/ModalButton";
-import RulesUI from "../../entities/Rules/ui/RulesUI";
+import RulesUI from "../../entities/rules/ui/RulesUI";
 
 const Header = () => {
   return (
