@@ -7,7 +7,7 @@ import {
 } from "./actionTypes";
 
 const initialState = {
-  question: {},
+  question: null,
   isLoading: true,
   nextQuestionId: null,
   correctAnswerId: null,
@@ -40,7 +40,7 @@ export const questionReducer = (
       return {
         ...state,
         isLoading: false,
-        question: {},
+        question: null,
       };
     default:
       return state;
