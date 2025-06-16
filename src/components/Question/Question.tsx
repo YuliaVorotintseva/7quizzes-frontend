@@ -1,27 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../Button/Button";
 import AnswerComponent from "../AnswerComponent/AnswerComponent";
 import Answer from "../../interfaces/Answer";
 
 import "./question.css";
-import { useNavigate } from "react-router-dom";
 
 export type Props = {
-  answers: Array<Answer>;
-  correctAnswerId: string | null;
-  selectedAnswerId: string | null;
-  nextQuestionId: string | null;
+  answers: Array<Answer> | undefined;
+  correctAnswerId: string | null | undefined;
+  selectedAnswerId: string | null | undefined;
+  nextQuestionId: string | null | undefined;
   questionNumber: number;
   score: number;
-  text: string;
+  text: string | undefined;
   setSelectedAnswerId: (id: string) => void;
   setGoToNextQuestion: (goToNextQuestion: boolean) => void;
 };
 
 const Question = (props: Props) => {
   const navigate = useNavigate();
-  const answers = props.answers.map((answer: Answer, key) => {
+  const answers = props.answers?.map((answer: Answer, key) => {
     return (
       <AnswerComponent
         id={answer.id}

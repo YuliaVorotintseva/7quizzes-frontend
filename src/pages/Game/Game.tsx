@@ -1,189 +1,53 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import GameLayout from "../../layouts/GameLayout/GameLayout";
 import Question from "../../components/Question/Question";
-import Answer from "../../interfaces/Answer";
 import Loader from "../../components/Loader/Loader";
-import IAnswerRequest from "../../interfaces/IAnswerRequest";
 import { useTotalScore } from "../../utils/useTotalScore";
+import { AppDispatch, RootState } from "../../app/storeTypes";
 import {
-  getCorrectAnswerOfQuestion,
-  getQuestionById,
-  startGame,
-} from "../../entities/Game/api/GameAPI.mock";
-
-const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
-const currentRoomId = "room1";
-const userId = "user1";
-
-interface IQuestionRequest {
-  id?: string;
-  answers?: Array<Answer>;
-  number?: number;
-  text?: string;
-}
-
-class QuestionRequest implements IQuestionRequest {
-  id: string;
-  answers: Array<Answer>;
-  number: number;
-  text: string;
-
-  constructor(params: IQuestionRequest) {
-    this.id = params.id || "";
-    this.answers = params.answers || [];
-    this.number = params.number || 1;
-    this.text = params.text || "";
-  }
-}
-
-const getQuestion = async (questionId: string) => {
-  let question;
-  if (isMocked) {
-    question = await getQuestionById(questionId);
-  } else {
-    question = await fetch(
-      `http://localhost:8080/rooms/${currentRoomId}/game/question/${questionId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      },
-    ).then((response) => response.json());
-  }
-
-  const answers: Array<Answer> = question.answersList.map(
-    (answer: IAnswerRequest) =>
-      new Answer({
-        id: answer.answerId,
-        text: answer.answerText,
-        isCorrect: answer.isCorrect,
-        score: answer.questionScore,
-      }),
-  );
-
-  return new QuestionRequest({
-    id: questionId,
-    answers: answers,
-    number: question.questionNumber,
-    text: question.questionText,
-  });
-};
-
-const submitAnswer = async (questionId: string, selectedAnswerId: string) => {
-  let response;
-  if (isMocked) {
-    response = await getCorrectAnswerOfQuestion(questionId);
-  } else {
-    response = await fetch(
-      `http://localhost:8080/rooms/${currentRoomId}/game/question/${questionId}/answer`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          playerId: userId,
-          answerId: selectedAnswerId,
-        }),
-      },
-    ).then((response) => response.json());
-  }
-
-  return {
-    correctAnswerId: response.correctAnswerId,
-    nextQuestionId: response.nextQuestionId,
-  };
-};
+  getCorrectAnswerOfCurrentQuestion,
+  getFirstQuestionAction,
+  getNextQuestionAction,
+} from "../../entities/game/model/questionActions";
 
 const Game = () => {
-  const [question, setQuestion] = useState(new QuestionRequest({}));
+  const dispatch = useDispatch<AppDispatch>();
+  const { question, isLoading, nextQuestionId, correctAnswerId } = useSelector(
+    (state: RootState) => state.questionReducer,
+  );
+
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [nextQuestionId, setNextQuestionId] = useState(null);
   const [goToNextQuestion, setGoToNextQuestion] = useState(false);
-  const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(null);
-  const [correctAnswerId, setCorrectAnswerId] = useState(null);
-  const [isLoading, setLoading] = useState(true);
+  const [selectedAnswerId, setSelectedAnswerId] = useState<
+    string | null | undefined
+  >(null);
   const { totalScore, setTotalScore } = useTotalScore();
 
   useEffect(() => {
-    const loadFirstQuestion = async () => {
-      setLoading(true);
-      try {
-        let response;
-        if (isMocked) {
-          response = await startGame();
-        } else {
-          response = await fetch(
-            `http://localhost:8080/rooms/${currentRoomId}/game/start`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-              body: JSON.stringify({
-                playerId: userId,
-              }),
-            },
-          ).then((response) => response.json());
-        }
-
-        const firstQuestion = await getQuestion(response.questionId);
-        return setQuestion(firstQuestion);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadFirstQuestion();
-  }, []);
+    dispatch(getFirstQuestionAction());
+  }, [dispatch]);
 
   useEffect(() => {
     if (!selectedAnswerId) return;
-    const getCorrectAnswerId = async () => {
-      setLoading(true);
-      try {
-        const response = await submitAnswer(question.id, selectedAnswerId);
-        setTotalScore(
-          selectedAnswerId === response.correctAnswerId
-            ? totalScore + 1
-            : totalScore,
-        );
-        setNextQuestionId(response.nextQuestionId);
-        setCorrectAnswerId(response.correctAnswerId);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getCorrectAnswerId();
-  }, [selectedAnswerId]);
+
+    dispatch(getCorrectAnswerOfCurrentQuestion(question.id, selectedAnswerId));
+
+    setTotalScore(
+      selectedAnswerId === correctAnswerId ? totalScore + 1 : totalScore,
+    );
+  }, [dispatch, correctAnswerId, selectedAnswerId]);
 
   useEffect(() => {
     if (!goToNextQuestion || !nextQuestionId) return;
-    const loadNextQuestion = async () => {
-      setLoading(true);
-      try {
-        const nextQuestion = await getQuestion(nextQuestionId);
-        setQuestion(nextQuestion);
-        setSelectedAnswerId(null);
-        setCorrectAnswerId(null);
-        setGoToNextQuestion(false);
-        setQuestionNumber(questionNumber + 1);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadNextQuestion();
-  }, [goToNextQuestion, nextQuestionId]);
+
+    dispatch(getNextQuestionAction(nextQuestionId));
+
+    setSelectedAnswerId(null);
+    setGoToNextQuestion(false);
+    setQuestionNumber(questionNumber + 1);
+  }, [dispatch, goToNextQuestion, nextQuestionId]);
 
   return (
     <>
