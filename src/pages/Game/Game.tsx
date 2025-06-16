@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import GameLayout from "../../layouts/GameLayout/GameLayout";
-import Question from "../../components/Question/Question";
+import Question from "../../entities/game/ui/Question";
 import Loader from "../../components/Loader/Loader";
-import { useTotalScore } from "../../utils/useTotalScore";
 import { AppDispatch, RootState } from "../../app/storeTypes";
 import {
   getCorrectAnswerOfCurrentQuestion,
@@ -14,7 +13,7 @@ import {
 
 const Game = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { question, isLoading, nextQuestionId, correctAnswerId } = useSelector(
+  const { isLoading, question, nextQuestionId } = useSelector(
     (state: RootState) => state.questionReducer,
   );
 
@@ -23,7 +22,6 @@ const Game = () => {
   const [selectedAnswerId, setSelectedAnswerId] = useState<
     string | null | undefined
   >(null);
-  const { totalScore, setTotalScore } = useTotalScore();
 
   useEffect(() => {
     dispatch(getFirstQuestionAction());
@@ -31,13 +29,8 @@ const Game = () => {
 
   useEffect(() => {
     if (!selectedAnswerId) return;
-
     dispatch(getCorrectAnswerOfCurrentQuestion(question.id, selectedAnswerId));
-
-    setTotalScore(
-      selectedAnswerId === correctAnswerId ? totalScore + 1 : totalScore,
-    );
-  }, [dispatch, correctAnswerId, selectedAnswerId]);
+  }, [dispatch, selectedAnswerId]);
 
   useEffect(() => {
     if (!goToNextQuestion || !nextQuestionId) return;
@@ -56,13 +49,8 @@ const Game = () => {
       ) : (
         <GameLayout>
           <Question
-            answers={question.answers}
-            correctAnswerId={correctAnswerId}
             selectedAnswerId={selectedAnswerId}
-            nextQuestionId={nextQuestionId}
             questionNumber={questionNumber}
-            score={totalScore}
-            text={question.text}
             setSelectedAnswerId={setSelectedAnswerId}
             setGoToNextQuestion={setGoToNextQuestion}
           />
