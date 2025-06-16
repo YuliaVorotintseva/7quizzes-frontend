@@ -1,11 +1,11 @@
 import React from "react";
 
 import GameLayout from "../../layouts/GameLayout/GameLayout";
-import Finish from "../../components/Finish/Finish";
+import ShowTotalScoreUI from "../../entities/score/ui/showTotalScoreUI";
 
 const GameEnd = () => (
   <GameLayout className="end">
-    <Finish />
+    <ShowTotalScoreUI />
   </GameLayout>
 );
 
