@@ -6,7 +6,7 @@ import Button from "../../../components/Button/Button";
 import { resetTotalScore } from "../model/scoreActions";
 import { AppDispatch, RootState } from "../../../app/storeTypes";
 
-import "./finish.css";
+import "./showTotalScoreUI.css";
 
 const ShowTotalScoreUI = () => {
   const dispatch = useDispatch<AppDispatch>();
