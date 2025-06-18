@@ -7,5 +7,5 @@ export interface GetRulesState {
 
 export interface GetRulesAction {
   type: typeof GET_RULES;
-  rules: string[];
+  rules: string[] | undefined;
 }
