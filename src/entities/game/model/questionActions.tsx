@@ -37,8 +37,7 @@ export const getFirstQuestionAction =
   };
 
 export const getNextQuestionAction =
-  (nextQuestionId: string | null | undefined) =>
-  async (dispatch: Dispatch<GetQuestionAction>) => {
+  (nextQuestionId: string) => async (dispatch: Dispatch<GetQuestionAction>) => {
     dispatch({
       type: GET_QUESTION_FETCH,
     });
@@ -62,10 +61,7 @@ export const getNextQuestionAction =
   };
 
 export const getCorrectAnswerOfCurrentQuestion =
-  (
-    questionId: string | null | undefined,
-    selectedAnswerId: string | undefined,
-  ) =>
+  (questionId: string, selectedAnswerId: string) =>
   async (dispatch: Dispatch<GetQuestionAction>) => {
     dispatch({
       type: GET_QUESTION_FETCH,

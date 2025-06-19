@@ -1,0 +1,18 @@
+.choose__room_btns {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 16.7vw;
+}
+
+.choose__room_btn {
+  width: 100%;
+  font-family: var(--main-font-family);
+  font-size: var(--text-header-info);
+  font-weight: var(--font-weight-middle);
+  color: var(--button-active-background-color);
+  border: solid 1px var(--button-active-background-color);
+  border-radius: 10px;
+}

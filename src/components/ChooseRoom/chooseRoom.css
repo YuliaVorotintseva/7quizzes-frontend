@@ -1,0 +1,22 @@
+.choose__room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 11.46vw;
+  font-family: var(--main-font-family);
+  color: var(--main-font-color);
+}
+
+.choose__room_title {
+  height: 38px;
+  margin: 0 auto 20px;
+  font-size: var(--text-header-question);
+  font-weight: var(--font-weight-middle);
+}
+
+.choose__room_info {
+  margin-bottom: 50px;
+  font-size: var(--text-header-info);
+  font-weight: var(--font-weight-normal);
+}

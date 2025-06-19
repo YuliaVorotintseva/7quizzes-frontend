@@ -40,7 +40,7 @@ const CreateRoom = () => {
       </div>
       <Button
         className="create__room_button"
-        onClick={() => {}}
+        onClick={() => navigate("/choose")}
         text="continue"
       />
     </div>

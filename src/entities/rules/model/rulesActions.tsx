@@ -16,7 +16,7 @@ export const getRules =
 
       dispatch({
         type: GET_RULES,
-        rules: rules,
+        rules,
       });
     } catch (error) {
       console.log("Error fetching rules: ", error);
