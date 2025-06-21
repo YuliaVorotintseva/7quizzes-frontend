@@ -7,14 +7,8 @@ interface GameLayoutProps {
   className?: string;
 }
 
-const GameLayout = ({ children, className }: GameLayoutProps) => {
-  return (
-    <>
-      <main className={className ? `main ${className}` : "main"}>
-        {children}
-      </main>
-    </>
-  );
-};
+const GameLayout = ({ children, className }: GameLayoutProps) => (
+  <main className={className ? `main ${className}` : "main"}>{children}</main>
+);
 
 export default GameLayout;

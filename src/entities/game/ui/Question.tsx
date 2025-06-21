@@ -11,7 +11,7 @@ import { incrementTotalScore } from "../../../entities/score/model/scoreActions"
 import "./question.css";
 
 export type Props = {
-  selectedAnswerId: string | null | undefined;
+  selectedAnswerId: string | null;
   questionNumber: number;
   setSelectedAnswerId: (id: string) => void;
   setGoToNextQuestion: (goToNextQuestion: boolean) => void;

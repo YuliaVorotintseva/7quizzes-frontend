@@ -1,0 +1,16 @@
+.room__layout {
+  position: relative;
+  padding: 60px 0 85px;
+  background-color: var(--main-light-color);
+  border-radius: 20px;
+}
+
+.room__layout.create {
+  max-width: 30.9vw;
+  margin: 157px auto;
+}
+
+.room__layout.choose {
+  max-width: 39.6vw;
+  margin: 147px auto;
+}

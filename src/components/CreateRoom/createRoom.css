@@ -1,0 +1,30 @@
+.create__room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5.625vw;
+  font-family: var(--main-font-family);
+  color: var(--main-font-color);
+}
+
+.create__room_title {
+  height: 38px;
+  margin: 0 auto 40px;
+  font-size: var(--text-header-question);
+  font-weight: var(--font-weight-middle);
+}
+
+.create__room_name {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 18.85vw;
+  font-size: 18px;
+}
+
+.room__name {
+  position: relative;
+  width: 100%;
+  padding: 8px;
+}

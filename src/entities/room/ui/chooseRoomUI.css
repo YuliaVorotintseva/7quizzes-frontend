@@ -1,0 +1,33 @@
+.choose__room_btns {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  width: 16.7vw;
+}
+
+.choose__room_btn {
+  width: 100%;
+  height: 55px;
+  font-family: var(--main-font-family);
+  font-size: var(--text-header-info);
+  font-weight: var(--font-weight-middle);
+  color: var(--button-active-background-color);
+  background-color: var(--main-light-color);
+  border: solid 1px var(--button-active-background-color);
+  border-radius: 10px;
+}
+
+.choose__room_btn:hover {
+  background-color: #edf4ff;
+}
+
+.choose__room_btn:active {
+  background-color: #d3e4ff;
+}
+
+.choose__room_info {
+  font-size: var(--text-header-info);
+  font-weight: var(--font-weight-normal);
+}

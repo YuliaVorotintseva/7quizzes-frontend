@@ -1,0 +1,18 @@
+.button__close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #bababa;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.button__close:hover {
+  fill: #a3a3a3;
+}
+
+.button__close:active {
+  fill: #8f8f8f;
+}

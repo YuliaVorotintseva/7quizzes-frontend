@@ -46,3 +46,7 @@
 .button__end {
   margin: 0;
 }
+
+.create__room_button {
+  align-self: center;
+}

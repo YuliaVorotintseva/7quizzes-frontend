@@ -16,26 +16,33 @@ const Game = () => {
   const { isLoading, question, nextQuestionId } = useSelector(
     (state: RootState) => state.questionReducer,
   );
+  const { currentRoomId } = useSelector(
+    (state: RootState) => state.currentRoomIdReducer,
+  );
 
   const [questionNumber, setQuestionNumber] = useState(1);
   const [goToNextQuestion, setGoToNextQuestion] = useState(false);
-  const [selectedAnswerId, setSelectedAnswerId] = useState<
-    string | null | undefined
-  >(null);
+  const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(null);
 
   useEffect(() => {
-    dispatch(getFirstQuestionAction());
+    dispatch(getFirstQuestionAction(currentRoomId));
   }, [dispatch]);
 
   useEffect(() => {
     if (!selectedAnswerId) return;
-    dispatch(getCorrectAnswerOfCurrentQuestion(question.id, selectedAnswerId));
+    dispatch(
+      getCorrectAnswerOfCurrentQuestion(
+        currentRoomId,
+        question.id,
+        selectedAnswerId,
+      ),
+    );
   }, [dispatch, selectedAnswerId]);
 
   useEffect(() => {
     if (!goToNextQuestion || !nextQuestionId) return;
 
-    dispatch(getNextQuestionAction(nextQuestionId));
+    dispatch(getNextQuestionAction(currentRoomId, nextQuestionId));
 
     setSelectedAnswerId(null);
     setGoToNextQuestion(false);

@@ -6,12 +6,8 @@ export type SignInLayoutProps = {
   children: ReactNode;
 };
 
-const SignInLayout = ({ children }: SignInLayoutProps) => {
-  return (
-    <>
-      <main className="sign_in">{children}</main>
-    </>
-  );
-};
+const SignInLayout = ({ children }: SignInLayoutProps) => (
+  <main className="sign_in">{children}</main>
+);
 
 export default SignInLayout;
