@@ -10,7 +10,6 @@ import {
   GET_ROOM_ERROR,
   GET_ROOM_FETCH,
   GET_ROOM_SUCCESS,
-  Room,
   RoomsAction,
 } from "./actionTypes";
 import {
@@ -25,11 +24,11 @@ export const getRooms = () => async (dispatch: Dispatch<RoomsAction>) => {
   });
 
   try {
-    const rooms: Room[] = await getAllRooms();
+    const rooms = await getAllRooms();
 
     dispatch({
       type: GET_ALL_ROOMS_SUCCESS,
-      rooms,
+      rooms: rooms,
     });
   } catch (error) {
     console.log(error);

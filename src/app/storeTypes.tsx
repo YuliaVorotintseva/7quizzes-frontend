@@ -7,6 +7,7 @@ import {
 import { GetQuestionState } from "../entities/game/model/actionTypes";
 import { GetTotalScoreState } from "../entities/score/model/actionTypes";
 import { RoomState } from "../entities/room/model/actionTypes";
+import { CurrentRoomIdState } from "../entities/currentRoomId/model/actionTypes";
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -22,4 +23,5 @@ export type RootState = {
   questionReducer: GetQuestionState;
   totalScoreReducer: GetTotalScoreState;
   roomReducer: RoomState;
+  currentRoomIdReducer: CurrentRoomIdState;
 };

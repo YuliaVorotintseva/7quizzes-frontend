@@ -14,6 +14,28 @@ export interface IUser {
   playerId: string;
 }
 
+export interface IResponseRoom {
+  roomId: string;
+  roomName: string;
+  players?: IUser[];
+}
+
+export class ResponseRoom {
+  roomId: string;
+  roomName: string;
+  players?: IUser[];
+
+  constructor({ roomId, roomName, players }: IResponseRoom) {
+    this.roomId = roomId;
+    this.roomName = roomName;
+    this.players = players !== null ? players : [];
+  }
+}
+
+export type Response = {
+  rooms: ResponseRoom[];
+};
+
 export interface IRoom {
   id: string;
   name: string;

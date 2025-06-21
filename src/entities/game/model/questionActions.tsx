@@ -14,14 +14,16 @@ import {
 } from "../api/GameAPI.mock";
 
 export const getFirstQuestionAction =
-  () => async (dispatch: Dispatch<GetQuestionAction>) => {
+  (currentRoomId: string | null) =>
+  async (dispatch: Dispatch<GetQuestionAction>) => {
     dispatch({
       type: GET_QUESTION_FETCH,
     });
 
     try {
-      const firstQuestionId = await getFirstQuestionId();
-      const firstQuestion = await getQuestion(firstQuestionId);
+      if (!currentRoomId) return;
+      const firstQuestionId = await getFirstQuestionId(currentRoomId);
+      const firstQuestion = await getQuestion(currentRoomId, firstQuestionId);
 
       dispatch({
         type: GET_QUESTION_SUCCESS,
@@ -29,7 +31,6 @@ export const getFirstQuestionAction =
       });
     } catch (error) {
       console.log(error);
-
       dispatch({
         type: GET_QUESTION_ERROR,
       });
@@ -37,14 +38,16 @@ export const getFirstQuestionAction =
   };
 
 export const getNextQuestionAction =
-  (nextQuestionId: string) => async (dispatch: Dispatch<GetQuestionAction>) => {
+  (currentRoomId: string | null, nextQuestionId: string) =>
+  async (dispatch: Dispatch<GetQuestionAction>) => {
     dispatch({
       type: GET_QUESTION_FETCH,
     });
 
     try {
       if (nextQuestionId) {
-        const nextQuestion = await getQuestion(nextQuestionId);
+        if (!currentRoomId) return;
+        const nextQuestion = await getQuestion(currentRoomId, nextQuestionId);
 
         dispatch({
           type: GET_QUESTION_SUCCESS,
@@ -61,15 +64,23 @@ export const getNextQuestionAction =
   };
 
 export const getCorrectAnswerOfCurrentQuestion =
-  (questionId: string, selectedAnswerId: string) =>
+  (
+    currentRoomId: string | null,
+    questionId: string | undefined,
+    selectedAnswerId: string | null,
+  ) =>
   async (dispatch: Dispatch<GetQuestionAction>) => {
     dispatch({
       type: GET_QUESTION_FETCH,
     });
 
     try {
-      if (questionId && selectedAnswerId) {
-        const response = await submitAnswer(questionId, selectedAnswerId);
+      if (questionId && selectedAnswerId && currentRoomId) {
+        const response = await submitAnswer(
+          currentRoomId,
+          questionId,
+          selectedAnswerId,
+        );
 
         dispatch({
           type: GET_CORRECT_ANSWER,

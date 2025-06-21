@@ -1,5 +1,5 @@
 import data from "../../../../public/RoomAPIData.json";
-import { Room } from "../model/actionTypes";
+import { Response, Room } from "../model/actionTypes";
 
 const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
 
@@ -10,12 +10,16 @@ export const getAllRooms = async () => {
       (room) => new Room({ id: room.roomId, name: room.roomName }),
     );
   } else {
-    rooms = await fetch("http://localhost:8080/rooms", {
+    const result: Response = await fetch("http://localhost:8080/rooms", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
     }).then((response) => response.json());
+
+    rooms = result.rooms.map(
+      (room) => new Room({ id: room.roomId, name: room.roomName }),
+    );
   }
   return rooms;
 };
@@ -31,11 +35,11 @@ export const createNewRoom = async (playerId: string, roomName: string) => {
       Accept: "application/json",
     },
     body: JSON.stringify({
-      playerId,
-      roomName,
+      playerId: playerId,
+      roomName: roomName,
     }),
   }).then((response) => response.json());
-  return new Room(room);
+  return new Room({ id: room.roomId, name: room.roomName });
 };
 
 export const getRoomDataById = async (roomId: string) => {
@@ -56,5 +60,5 @@ export const getRoomDataById = async (roomId: string) => {
       Accept: "application/json",
     },
   }).then((response) => response.json());
-  return new Room(room);
+  return new Room({ id: room.roomId, name: room.roomName });
 };

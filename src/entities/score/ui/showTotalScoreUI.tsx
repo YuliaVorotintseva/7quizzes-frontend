@@ -21,7 +21,7 @@ const ShowTotalScoreUI = () => {
         className="finish__button-submit button__end"
         onClick={() => {
           dispatch(resetTotalScore());
-          navigate("/game");
+          navigate("/start");
         }}
         text="Play again"
       />

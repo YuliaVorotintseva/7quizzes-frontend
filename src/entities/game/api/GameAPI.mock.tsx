@@ -5,11 +5,13 @@ import Answer from "../../../interfaces/Answer";
 import { CorrectAnswerOfQuestion, QuestionRequest } from "../model/actionTypes";
 
 const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
-const currentRoomId = "room1";
-const userId = "user1";
+const playerId = "player1";
 let index = 0;
 
-export const getQuestion = async (questionId: string) => {
+export const getQuestion = async (
+  currentRoomId: string,
+  questionId: string,
+) => {
   let question;
 
   if (isMocked) {
@@ -46,7 +48,7 @@ export const getQuestion = async (questionId: string) => {
   });
 };
 
-export const getFirstQuestionId = async () => {
+export const getFirstQuestionId = async (currentRoomId: string) => {
   let response;
 
   if (isMocked) {
@@ -61,7 +63,7 @@ export const getFirstQuestionId = async () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          playerId: userId,
+          playerId: playerId,
         }),
       },
     ).then((response) => response.json());
@@ -71,6 +73,7 @@ export const getFirstQuestionId = async () => {
 };
 
 export const submitAnswer = async (
+  currentRoomId: string,
   questionId: string,
   selectedAnswerId: string,
 ) => {
@@ -97,7 +100,7 @@ export const submitAnswer = async (
           Accept: "application/json",
         },
         body: JSON.stringify({
-          playerId: userId,
+          playerId: playerId,
           answerId: selectedAnswerId,
         }),
       },

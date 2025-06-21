@@ -19,4 +19,9 @@
   margin-bottom: 50px;
   font-size: var(--text-header-info);
   font-weight: var(--font-weight-normal);
+  text-align: center;
+}
+
+.choose__room_create {
+  color: var(--button-active-background-color);
 }

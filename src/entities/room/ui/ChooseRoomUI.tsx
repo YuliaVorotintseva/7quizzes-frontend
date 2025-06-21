@@ -1,47 +1,37 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import Loader from "../../../components/Loader/Loader";
+import { setCurrentRoomId } from "../../../entities/currentRoomId/model/currentRoomIdActions";
 import { AppDispatch, RootState } from "../../../app/storeTypes";
-import { getRooms } from "../model/roomActions";
+import { Room } from "../model/actionTypes";
 
 import "./chooseRoomUI.css";
-import { Room } from "../model/actionTypes";
 
 const ChooseRoomUI = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { rooms, isLoading } = useSelector(
-    (state: RootState) => state.roomReducer,
-  );
-
-  const roomBtns = rooms
-    ? rooms.map((room: Room) => (
-        <button
-          className="choose__room_btn"
-          onClick={() => navigate("/start")}
-          key={room.id}
-        >
-          {room.name}
-        </button>
-      ))
-    : [];
-
-  useEffect(() => {
-    if (isLoading) {
-      dispatch(getRooms());
-    }
-  }, [dispatch, isLoading]);
+  const { rooms } = useSelector((state: RootState) => state.roomReducer);
 
   return (
-    <>
-      {isLoading ? (
-        <Loader />
+    <div className="choose__room_btns">
+      {rooms && rooms.length > 0 ? (
+        rooms.map((room: Room, key) => (
+          <button
+            key={key}
+            className="choose__room_btn"
+            onClick={() => {
+              dispatch(setCurrentRoomId(room.id));
+              navigate("/start");
+            }}
+          >
+            {room.name}
+          </button>
+        ))
       ) : (
-        <div className="choose__room_btns">{roomBtns}</div>
+        <p className="choose__room_info">There are no rooms yet</p>
       )}
-    </>
+    </div>
   );
 };
 

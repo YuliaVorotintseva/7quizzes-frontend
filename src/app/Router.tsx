@@ -7,14 +7,14 @@ import GameEnd from "../pages/GameEnd.tsx/GameEnd";
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import SignInPage from "../pages/SignInPage/SignInPage";
 import CreateRoomPage from "../pages/CreateRoom/CreateRoomPage";
-import ChooseRoom from "../components/ChooseRoom/ChooseRoom";
+import ChooseRoomPage from "../pages/ChooseRoomPage/ChooseRoomPage";
 
 const Router = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<SignInPage />} />
-        <Route path="choose" element={<ChooseRoom />} />
+        <Route path="choose" element={<ChooseRoomPage />} />
         <Route path="create" element={<CreateRoomPage />} />
         <Route path="start" element={<GameStart />} />
         <Route path="game" element={<Game />} />
