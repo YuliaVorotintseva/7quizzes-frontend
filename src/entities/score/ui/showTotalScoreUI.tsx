@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../../../components/Button/Button";
-import { resetTotalScore } from "../model/scoreActions";
 import { AppDispatch, RootState } from "../../../app/storeTypes";
+import { reset } from "../model/scoreReducer";
 
 import "./showTotalScoreUI.css";
 
 const ShowTotalScoreUI = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { score } = useSelector((state: RootState) => state.totalScoreReducer);
+  const { score } = useSelector((state: RootState) => state.score);
   const navigate = useNavigate();
 
   return (
@@ -20,7 +20,7 @@ const ShowTotalScoreUI = () => {
       <Button
         className="finish__button-submit button__end"
         onClick={() => {
-          dispatch(resetTotalScore());
+          dispatch(reset());
           navigate("/start");
         }}
         text="Play again"

@@ -1,12 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "../../../app/storeTypes";
+import { useGetRulesDataQuery } from "../api/RulesAPI";
 
 import "./rulesUI.css";
 
 const RulesUI = () => {
-  const { rules } = useSelector((state: RootState) => state.rulesReducer);
+  const { data: rules } = useGetRulesDataQuery();
 
   return (
     <div className="rules__info">

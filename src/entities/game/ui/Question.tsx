@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "../../../components/Button/Button";
 import AnswerComponent from "../../../components/AnswerComponent/AnswerComponent";
 import Answer from "../../../interfaces/Answer";
+import { increment } from "../../../entities/score/model/scoreReducer";
 import { AppDispatch, RootState } from "../../../app/storeTypes";
-import { incrementTotalScore } from "../../../entities/score/model/scoreActions";
 
 import "./question.css";
 
@@ -25,23 +25,23 @@ const Question = ({
 }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const { question, nextQuestionId, correctAnswerId } = useSelector(
-    (state: RootState) => state.questionReducer,
+    (state: RootState) => state.questionAPI,
   );
-  const { score } = useSelector((state: RootState) => state.totalScoreReducer);
+  const { score } = useSelector((state: RootState) => state.score);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (selectedAnswerId !== null && selectedAnswerId === correctAnswerId) {
-      dispatch(incrementTotalScore());
+      dispatch(increment());
     }
   }, [correctAnswerId]);
 
-  const answers = question.answers?.map((answer: Answer, key) => {
+  const answers = question.answers?.map((answer: Answer) => {
     return (
       <AnswerComponent
         id={answer.id}
         text={answer.text}
-        key={key}
+        key={answer.id}
         isCorrect={answer.id === correctAnswerId}
         isSelected={answer.id === selectedAnswerId}
         isDisabled={selectedAnswerId !== null}

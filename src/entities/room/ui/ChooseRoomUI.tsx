@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { setCurrentRoomId } from "../../../entities/currentRoomId/model/currentRoomIdActions";
-import { AppDispatch, RootState } from "../../../app/storeTypes";
+import { setCurrentRoomId } from "../../currentRoomId/model/currentRoomIdReducer";
+import { useGetAllRoomsQuery } from "../api/RoomAPI";
+import { AppDispatch } from "../../../app/storeTypes";
 import { Room } from "../model/actionTypes";
 
 import "./chooseRoomUI.css";
@@ -11,14 +12,14 @@ import "./chooseRoomUI.css";
 const ChooseRoomUI = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { rooms } = useSelector((state: RootState) => state.roomReducer);
+  const { data: rooms } = useGetAllRoomsQuery();
 
   return (
     <div className="choose__room_btns">
       {rooms && rooms.length > 0 ? (
-        rooms.map((room: Room, key) => (
+        rooms.map((room: Room) => (
           <button
-            key={key}
+            key={room.id}
             className="choose__room_btn"
             onClick={() => {
               dispatch(setCurrentRoomId(room.id));

@@ -1,10 +1,5 @@
 import Answer from "../../../interfaces/Answer";
 
-export const GET_QUESTION_FETCH = "GET_QUESTION_FETCH";
-export const GET_CORRECT_ANSWER = "GET_CORRECT_ANSWER";
-export const GET_QUESTION_SUCCESS = "GET_QUESTION_SUCCESS";
-export const GET_QUESTION_ERROR = "GET_QUESTION_ERROR";
-
 export interface QuestionData {
   id?: string;
   answers?: Array<Answer>;
@@ -51,7 +46,7 @@ export class CorrectAnswerOfQuestion implements QuestionData {
 }
 
 export interface GetQuestionState {
-  question: QuestionData;
+  question: QuestionData | null | undefined;
   isLoading: boolean;
   nextQuestionId: string | null;
   correctAnswerId: string | null;
@@ -64,17 +59,17 @@ export interface GetQuestionAction {
   correctAnswerId?: string | null;
 }
 
-export interface GetQuestionActionFetch extends GetQuestionAction {
-  type: typeof GET_QUESTION_FETCH;
-}
+export type GetFirstQuestionType = {
+  currentRoomId: string | null;
+};
 
-export interface GetQuestionActionSuccess extends GetQuestionAction {
-  type: typeof GET_QUESTION_SUCCESS;
-  question: QuestionData;
-  nextQuestionId: string | null;
-  correctAnswerId: string | null;
-}
+export type GetNextQuestionType = {
+  currentRoomId: string;
+  nextQuestionId: string;
+};
 
-export interface GetQuestionActionError extends GetQuestionAction {
-  type: typeof GET_QUESTION_ERROR;
-}
+export type GetCorrectAnswerOfCurrentQuestionType = {
+  currentRoomId: string;
+  questionId: string;
+  selectedAnswerId: string;
+};

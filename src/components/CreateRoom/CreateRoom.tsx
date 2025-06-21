@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 import useFormField from "../../utils/useFormField";
 import CloseButton from "../CloseButton/CloseButton";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
-import { AppDispatch } from "../../app/storeTypes";
-import { createRoom } from "../../entities/room/model/roomActions";
+import { useCreateRoomMutation } from "../../entities/room/api/RoomAPI";
 
 import "./createRoom.css";
 
 const playerId = "player1";
 
 const CreateRoom = () => {
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const createRoomField = useFormField();
 
   const handleSubmit = async () => {
     try {
-      await dispatch(createRoom(playerId, createRoomField.value));
+      await useCreateRoomMutation({
+        playerId,
+        roomName: createRoomField.value,
+      });
       navigate("/choose");
     } catch (error) {
       console.error(error);

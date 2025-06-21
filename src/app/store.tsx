@@ -1,24 +1,21 @@
-import {
-  applyMiddleware,
-  combineReducers,
-  legacy_createStore as createStore,
-} from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { thunk } from "redux-thunk";
 
-import { rulesReducer } from "../entities/rules/model/rulesReducer";
-import { questionReducer } from "../entities/game/model/questionReducer";
-import { totalScoreReducer } from "../entities/score/model/scoreReducr";
-import { roomReducer } from "../entities/room/model/roomReducer";
-import { currentRoomIdReducer } from "../entities/currentRoomId/model/currentRoomIdReducer";
+import currentRoomIdReducer from "../entities/currentRoomId/model/currentRoomIdReducer";
+import scoreReducer from "../entities/score/model/scoreReducer";
+import { questionAPI } from "../entities/game/api/QuestionAPI";
+import { roomAPI } from "../entities/room/api/RoomAPI";
+import { rulesAPI } from "../entities/rules/api/RulesAPI";
 
-export const rootReducer = combineReducers({
-  rulesReducer,
-  questionReducer,
-  totalScoreReducer,
-  roomReducer,
-  currentRoomIdReducer,
+const store = configureStore({
+  reducer: {
+    [roomAPI.reducerPath]: roomAPI.reducer,
+    [questionAPI.reducerPath]: questionAPI.reducer,
+    [rulesAPI.reducerPath]: rulesAPI.reducer,
+    currentRoomId: currentRoomIdReducer,
+    score: scoreReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });
-
-const store = createStore(rootReducer, undefined, applyMiddleware(thunk));
 
 export default store;

@@ -6,10 +6,9 @@ import Question from "../../entities/game/ui/Question";
 import Loader from "../../components/Loader/Loader";
 import { AppDispatch, RootState } from "../../app/storeTypes";
 import {
-  getCorrectAnswerOfCurrentQuestion,
-  getFirstQuestionAction,
-  getNextQuestionAction,
-} from "../../entities/game/model/questionActions";
+  useGetFirstQuestionIdMutation,
+  useGetQuestionQuery,
+} from "../../entities/game/api/QuestionAPI";
 
 const Game = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -17,7 +16,7 @@ const Game = () => {
     (state: RootState) => state.questionReducer,
   );
   const { currentRoomId } = useSelector(
-    (state: RootState) => state.currentRoomIdReducer,
+    (state: RootState) => state.currentRoomId,
   );
 
   const [questionNumber, setQuestionNumber] = useState(1);
@@ -25,7 +24,7 @@ const Game = () => {
   const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(null);
 
   useEffect(() => {
-    dispatch(getFirstQuestionAction(currentRoomId));
+    dispatch(useGetFirstQuestionIdMutation(currentRoomId));
   }, [dispatch]);
 
   useEffect(() => {
@@ -42,7 +41,7 @@ const Game = () => {
   useEffect(() => {
     if (!goToNextQuestion || !nextQuestionId) return;
 
-    dispatch(getNextQuestionAction(currentRoomId, nextQuestionId));
+    dispatch(useGetQuestionQuery(currentRoomId, nextQuestionId));
 
     setSelectedAnswerId(null);
     setGoToNextQuestion(false);
