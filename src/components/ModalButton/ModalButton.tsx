@@ -16,13 +16,12 @@ const ModalButton = (props: ModalButtonProps) => {
       <button className="modal__button" onClick={() => setIsOpen(!isOpen)}>
         {props.buttonText}
       </button>
-      {isOpen && (
-        <Modal
-          onClickHandle={() => setIsOpen(!isOpen)}
-          title="Game rules"
-          content={props.content}
-        />
-      )}
+      <Modal
+        isVisible={isOpen}
+        onClickHandle={() => setIsOpen(!isOpen)}
+        title="Game rules"
+        content={props.content}
+      />
     </>
   );
 };

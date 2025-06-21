@@ -49,18 +49,17 @@ const CreateRoom = () => {
           isSubmit={true}
         />
       </form>
-      {isOpen && (
-        <Modal
-          onClickHandle={() => setIsOpen(!isOpen)}
-          title="Creating room error"
-          content={
-            <p>
-              An error occurred while creating the room because you are already
-              in another room. To create a new room, leave the current one.
-            </p>
-          }
-        />
-      )}
+      <Modal
+        isVisible={isOpen}
+        onClickHandle={() => setIsOpen(!isOpen)}
+        title="Creating room error"
+        content={
+          <p>
+            An error occurred while creating the room because you are already in
+            another room. To create a new room, leave the current one.
+          </p>
+        }
+      />
     </div>
   );
 };
