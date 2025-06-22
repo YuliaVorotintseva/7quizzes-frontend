@@ -11,6 +11,12 @@ const SignInForm = () => {
   const navigate = useNavigate();
   const emailField = useFormField();
 
+  const serverResponse = {
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+    refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6",
+  };
+  localStorage.setItem("authToken", serverResponse.token);
+
   return (
     <>
       <form className="form__sign_in" method="POST" action="/">

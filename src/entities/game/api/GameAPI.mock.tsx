@@ -3,6 +3,7 @@ import data from "../../../../public/GameAPIData.json";
 import IAnswerRequest from "../../../interfaces/IAnswerRequest";
 import Answer from "../../../interfaces/Answer";
 import { CorrectAnswerOfQuestion, QuestionRequest } from "../model/actionTypes";
+import { fetchGET, fetchPOST } from "../../../shared/api/fetcher";
 
 const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
 const playerId = "player1";
@@ -18,16 +19,9 @@ export const getQuestion = async (
     question =
       data.find((question) => question.questionId === questionId) || null;
   } else {
-    question = await fetch(
-      `http://localhost:8080/rooms/${currentRoomId}/game/question/${questionId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      },
-    ).then((response) => response.json());
+    question = await fetchGET(
+      `rooms/${currentRoomId}/game/question/${questionId}`,
+    );
   }
 
   const answers: Array<Answer> = question.answersList.map(
@@ -54,19 +48,10 @@ export const getFirstQuestionId = async (currentRoomId: string) => {
   if (isMocked) {
     response = data[0];
   } else {
-    response = await fetch(
-      `http://localhost:8080/rooms/${currentRoomId}/game/start`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          playerId: playerId,
-        }),
-      },
-    ).then((response) => response.json());
+    response = await fetchPOST(
+      `rooms/${currentRoomId}/game/start`,
+      JSON.stringify({ playerId: playerId }),
+    );
   }
 
   return response.questionId;
@@ -91,20 +76,13 @@ export const submitAnswer = async (
       nextQuestionId: index < data.length - 1 ? data[++index].questionId : null,
     };
   } else {
-    response = await fetch(
-      `http://localhost:8080/rooms/${currentRoomId}/game/question/${questionId}/answer`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          playerId: playerId,
-          answerId: selectedAnswerId,
-        }),
-      },
-    ).then((response) => response.json());
+    response = await fetchPOST(
+      `rooms/${currentRoomId}/game/question/${questionId}/answer`,
+      JSON.stringify({
+        playerId: playerId,
+        answerId: selectedAnswerId,
+      }),
+    );
   }
 
   return new CorrectAnswerOfQuestion({

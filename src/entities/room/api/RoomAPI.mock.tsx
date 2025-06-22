@@ -1,5 +1,6 @@
 import data from "../../../../public/RoomAPIData.json";
 import { Response, Room } from "../model/actionTypes";
+import { fetchGET, fetchPOST } from "../../../shared/api/fetcher";
 
 const isMocked: boolean = import.meta.env.VITE_MOCKED === "true";
 
@@ -10,12 +11,7 @@ export const getAllRooms = async () => {
       (room) => new Room({ id: room.roomId, name: room.roomName }),
     );
   } else {
-    const result: Response = await fetch("http://localhost:8080/rooms", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    }).then((response) => response.json());
+    const result: Response = await fetchGET("rooms");
 
     rooms = result.rooms.map(
       (room) => new Room({ id: room.roomId, name: room.roomName }),
@@ -28,17 +24,13 @@ export const createNewRoom = async (playerId: string, roomName: string) => {
   if (isMocked) {
     return new Room({ id: Math.random().toString(100), name: roomName });
   }
-  const room = await fetch("http://localhost:8080/rooms", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
+  const room = await fetchPOST(
+    "rooms",
+    JSON.stringify({
       playerId: playerId,
       roomName: roomName,
     }),
-  }).then((response) => response.json());
+  );
   return new Room({ id: room.roomId, name: room.roomName });
 };
 
@@ -54,11 +46,6 @@ export const getRoomDataById = async (roomId: string) => {
     }
     return null;
   }
-  const room = await fetch(`http://localhost:8080/rooms/${roomId}`, {
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  }).then((response) => response.json());
+  const room = await fetchGET(`rooms/${roomId}`);
   return new Room({ id: room.roomId, name: room.roomName });
 };
