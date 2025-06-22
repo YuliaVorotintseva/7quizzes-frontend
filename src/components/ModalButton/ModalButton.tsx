@@ -18,6 +18,7 @@ const ModalButton = (props: ModalButtonProps) => {
       </button>
       {isOpen && (
         <Modal
+          isVisible={isOpen}
           onClickHandle={() => setIsOpen(!isOpen)}
           title="Game rules"
           content={props.content}

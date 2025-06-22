@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useFormField from "../../utils/useFormField";
@@ -14,11 +14,13 @@ const playerId = "player1";
 const CreateRoom = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [createRoom] = useCreateRoomMutation();
   const createRoomField = useFormField();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
     try {
-      await useCreateRoomMutation({
+      await createRoom({
         playerId,
         roomName: createRoomField.value,
       });
@@ -49,18 +51,17 @@ const CreateRoom = () => {
           isSubmit={true}
         />
       </form>
-      {isOpen && (
-        <Modal
-          onClickHandle={() => setIsOpen(!isOpen)}
-          title="Creating room error"
-          content={
-            <p>
-              An error occurred while creating the room because you are already
-              in another room. To create a new room, leave the current one.
-            </p>
-          }
-        />
-      )}
+      <Modal
+        isVisible={isOpen}
+        onClickHandle={() => setIsOpen(!isOpen)}
+        title="Creating room error"
+        content={
+          <p>
+            An error occurred while creating the room because you are already in
+            another room. To create a new room, leave the current one.
+          </p>
+        }
+      />
     </div>
   );
 };

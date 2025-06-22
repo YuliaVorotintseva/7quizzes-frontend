@@ -9,6 +9,10 @@ import { increment } from "../../../entities/score/model/scoreReducer";
 import { AppDispatch, RootState } from "../../../app/storeTypes";
 
 import "./question.css";
+import {
+  useGetQuestionQuery,
+  useSubmitAnswerMutation,
+} from "../api/QuestionAPI";
 
 export type Props = {
   selectedAnswerId: string | null;
@@ -23,18 +27,26 @@ const Question = ({
   setSelectedAnswerId,
   setGoToNextQuestion,
 }: Props) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { question, nextQuestionId, correctAnswerId } = useSelector(
-    (state: RootState) => state.questionAPI,
-  );
-  const { score } = useSelector((state: RootState) => state.score);
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const { score } = useSelector((state: RootState) => state.score);
+  const { currentRoomId } = useSelector(
+    (state: RootState) => state.currentRoomId,
+  );
+  const { data: answerResult } = useSubmitAnswerMutation();
+  const { data: question } = useGetQuestionQuery(
+    { currentRoomId, questionId },
+    { skip: !questionId },
+  );
 
   useEffect(() => {
-    if (selectedAnswerId !== null && selectedAnswerId === correctAnswerId) {
+    if (
+      selectedAnswerId !== null &&
+      selectedAnswerId === answerResult?.correctAnswerId
+    ) {
       dispatch(increment());
     }
-  }, [correctAnswerId]);
+  }, [answerResult?.correctAnswerId]);
 
   const answers = question.answers?.map((answer: Answer) => {
     return (
@@ -42,7 +54,7 @@ const Question = ({
         id={answer.id}
         text={answer.text}
         key={answer.id}
-        isCorrect={answer.id === correctAnswerId}
+        isCorrect={answer.id === answerResult?.correctAnswerId}
         isSelected={answer.id === selectedAnswerId}
         isDisabled={selectedAnswerId !== null}
         selectAnswer={setSelectedAnswerId}
@@ -71,10 +83,12 @@ const Question = ({
       >
         {answers}
         <Button
-          disabled={selectedAnswerId === null || correctAnswerId === null}
+          disabled={
+            selectedAnswerId === null || answerResult?.correctAnswerId === null
+          }
           className={"submit__answer"}
           onClick={
-            nextQuestionId !== null
+            answerResult?.nextQuestionId !== null
               ? () => setGoToNextQuestion(true)
               : () => navigate("/finish")
           }

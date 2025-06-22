@@ -1,23 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
+import Loader from "../Loader/Loader";
 import ChooseRoomUI from "../../entities/room/ui/ChooseRoomUI";
-import { AppDispatch, RootState } from "../../app/storeTypes";
-import { getRooms } from "../../entities/room/model/roomActions";
+import { useGetAllRoomsQuery } from "../../entities/room/api/RoomAPI";
 
 import "./chooseRoom.css";
-import Loader from "../Loader/Loader";
 
 const ChooseRoom = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { isLoading } = useSelector((state: RootState) => state.roomReducer);
-
-  useEffect(() => {
-    if (isLoading) {
-      dispatch(getRooms());
-    }
-  }, [dispatch, isLoading]);
+  const { isLoading } = useGetAllRoomsQuery();
 
   return (
     <div className="choose__room">

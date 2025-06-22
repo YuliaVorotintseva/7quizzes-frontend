@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import RulesUI from "../../entities/rules/ui/RulesUI";
 import Button from "../Button/Button";
 
 import "./gameRules.css";
-import RulesUI from "../../entities/rules/ui/RulesUI";
 
 const GameRules = () => {
   const navigate = useNavigate();
