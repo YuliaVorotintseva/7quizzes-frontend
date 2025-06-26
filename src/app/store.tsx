@@ -10,6 +10,7 @@ import { questionReducer } from "../entities/game/model/questionReducer";
 import { totalScoreReducer } from "../entities/score/model/scoreReducr";
 import { roomReducer } from "../entities/room/model/roomReducer";
 import { currentRoomIdReducer } from "../entities/currentRoomId/model/currentRoomIdReducer";
+import { userReducer } from "../entities/user/model/userReducer";
 
 export const rootReducer = combineReducers({
   rulesReducer,
@@ -17,6 +18,7 @@ export const rootReducer = combineReducers({
   totalScoreReducer,
   roomReducer,
   currentRoomIdReducer,
+  userReducer,
 });
 
 const store = createStore(rootReducer, undefined, applyMiddleware(thunk));

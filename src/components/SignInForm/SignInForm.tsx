@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../Button/Button";
-
-import "./signInForm.css";
 import PasswordInput from "../PasswordInput/PasswordInput";
 import useFormField from "../../utils/useFormField";
+import { login } from "../../entities/user/model/userActions";
+import { AppDispatch, RootState } from "../../app/storeTypes";
+
+import "./signInForm.css";
 
 const SignInForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const emailField = useFormField();
+  const [password, setPassword] = useState<string | null>(null);
+  const { isAuthorized } = useSelector((state: RootState) => state.userReducer);
 
-  const serverResponse = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-    refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6",
+  useEffect(() => {
+    if (isAuthorized) {
+      navigate("/choose", { replace: true });
+    }
+  }, [isAuthorized, navigate]);
+
+  const onClick = async () => {
+    await dispatch(login({ email: emailField.value, password: password }));
   };
-  localStorage.setItem("authToken", serverResponse.token);
 
   return (
     <>
@@ -32,12 +42,8 @@ const SignInForm = () => {
             {...emailField}
           />
         </div>
-        <PasswordInput />
-        <Button
-          className="submit__sign_in"
-          onClick={() => navigate("/")}
-          text="continue"
-        />
+        <PasswordInput setPassword={setPassword} />
+        <Button className="submit__sign_in" onClick={onClick} text="continue" />
         <div className="info__sign_in">
           <p>Don’t have an account yet?</p>
           <Link to="/registration" className="link__register">
