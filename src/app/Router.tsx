@@ -7,6 +7,7 @@ import GameEnd from "../pages/GameEnd.tsx/GameEnd";
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import SignInPage from "../pages/SignInPage/SignInPage";
 import CreateRoomPage from "../pages/CreateRoom/CreateRoomPage";
+import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import ChooseRoomPage from "../pages/ChooseRoomPage/ChooseRoomPage";
 import { useSelector } from "react-redux";
 import { RootState } from "./storeTypes";
@@ -24,6 +25,7 @@ const Router = () => {
               isAuthorized ? <Navigate to="/choose" replace /> : <SignInPage />
             }
           />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route path="/choose" element={<ChooseRoomPage />} />
           <Route path="/create" element={<CreateRoomPage />} />
           <Route path="/start" element={<GameStart />} />

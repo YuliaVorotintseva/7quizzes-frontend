@@ -1,17 +1,4 @@
-export const fetchGET = async (currentUrl: string) => {
-  const token = localStorage.getItem("accessToken");
-
-  return await fetch(`http://localhost:8080/${currentUrl}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((response) => response.json());
-};
-
-export const fetchPOST = async (currentUrl: string, requestBody: string) => {
+const getHeaders = () => {
   const token = localStorage.getItem("accessToken");
 
   const headers: Record<string, string> = {
@@ -23,9 +10,18 @@ export const fetchPOST = async (currentUrl: string, requestBody: string) => {
     headers["Authorization"] = `Bearer ${token}`;
   }
 
-  return await fetch(`http://localhost:8080/${currentUrl}`, {
+  return headers;
+};
+
+export const fetchGET = async (currentUrl: string) =>
+  await fetch(`http://localhost:8080/${currentUrl}`, {
+    method: "GET",
+    headers: getHeaders(),
+  }).then((response) => response.json());
+
+export const fetchPOST = async (currentUrl: string, requestBody: string) =>
+  await fetch(`http://localhost:8080/${currentUrl}`, {
     method: "POST",
-    headers,
+    headers: getHeaders(),
     body: requestBody,
   }).then((response) => response.json());
-};
