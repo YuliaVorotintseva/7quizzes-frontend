@@ -20,14 +20,14 @@ export const getAllRooms = async () => {
   return rooms;
 };
 
-export const createNewRoom = async (playerId: string, roomName: string) => {
+export const createNewRoom = async (roomName: string) => {
   if (isMocked) {
     return new Room({ id: Math.random().toString(100), name: roomName });
   }
+
   const room = await fetchPOST(
     "rooms",
     JSON.stringify({
-      playerId: playerId,
       roomName: roomName,
     }),
   );
@@ -46,6 +46,7 @@ export const getRoomDataById = async (roomId: string) => {
     }
     return null;
   }
+
   const room = await fetchGET(`rooms/${roomId}`);
   return new Room({ id: room.roomId, name: room.roomName });
 };

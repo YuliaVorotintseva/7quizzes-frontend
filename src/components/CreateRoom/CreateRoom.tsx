@@ -11,17 +11,16 @@ import { createRoom } from "../../entities/room/model/roomActions";
 
 import "./createRoom.css";
 
-const playerId = "player1";
-
 const CreateRoom = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const createRoomField = useFormField();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (element: React.FormEvent) => {
+    element.preventDefault();
     try {
-      await dispatch(createRoom(playerId, createRoomField.value));
+      await dispatch(createRoom(createRoomField.value));
       navigate("/choose");
     } catch (error) {
       console.error(error);

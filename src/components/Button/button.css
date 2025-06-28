@@ -34,7 +34,8 @@
   margin-bottom: 46px;
 }
 
-.submit__sign_in {
+.submit__sign_in,
+.submit__sign_up {
   align-self: center;
   margin-bottom: 20px;
 }

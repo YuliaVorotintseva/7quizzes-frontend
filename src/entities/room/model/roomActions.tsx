@@ -39,14 +39,13 @@ export const getRooms = () => async (dispatch: Dispatch<RoomsAction>) => {
 };
 
 export const createRoom =
-  (playerId: string, roomName: string) =>
-  async (dispatch: Dispatch<RoomsAction>) => {
+  (roomName: string) => async (dispatch: Dispatch<RoomsAction>) => {
     dispatch({
       type: CREATE_ROOM_FETCH,
     });
 
     try {
-      const room = await createNewRoom(playerId, roomName);
+      const room = await createNewRoom(roomName);
 
       dispatch({
         type: CREATE_ROOM_SUCCESS,
