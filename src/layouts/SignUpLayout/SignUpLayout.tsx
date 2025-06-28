@@ -1,5 +1,7 @@
 import React, { ReactNode } from "react";
 
+import "./signUpLayout.css";
+
 export type SignUpLayoutProps = {
   children: ReactNode;
 };

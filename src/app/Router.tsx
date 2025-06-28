@@ -25,7 +25,8 @@ const Router = () => {
               isAuthorized ? <Navigate to="/choose" replace /> : <SignInPage />
             }
           />
-          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/registration" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
           <Route path="/choose" element={<ChooseRoomPage />} />
           <Route path="/create" element={<CreateRoomPage />} />
           <Route path="/start" element={<GameStart />} />
