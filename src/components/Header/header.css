@@ -28,3 +28,21 @@
   font-weight: var(--font-weight-normal);
   color: var(--main-font-color);
 }
+
+.header__custom {
+  display: flex;
+  flex-direction: row;
+  gap: 3.9vw;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn__logout {
+  align-self: center;
+  font-size: 28px;
+  font-weight: var(--font-weight-middle);
+  color: var(--main-font-color);
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+}

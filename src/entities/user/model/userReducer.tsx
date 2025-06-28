@@ -2,6 +2,7 @@ import {
   USER_AUTH_ERROR,
   USER_AUTH_FETCH,
   USER_AUTH_SUCCESS,
+  USER_LOGOUT_SUCCESS,
   USER_REGISTRATION_ERROR,
   USER_REGISTRATION_FETCH,
   USER_REGISTRATION_SUCCESS,
@@ -10,7 +11,7 @@ import {
 } from "./actionTypes";
 
 const initialState: UserState = {
-  username: null,
+  name: null,
   email: null,
   password: null,
   isAuthorized: false,
@@ -25,20 +26,15 @@ export const userReducer = (state = initialState, action: UserAction) => {
         isAuthorized: false,
       };
     case USER_AUTH_SUCCESS:
-      return {
-        ...state,
-        email: action.email,
-        password: action.password,
-        isAuthorized: true,
-      };
     case USER_REGISTRATION_SUCCESS:
       return {
         ...state,
-        username: action.username,
+        name: action.name,
         email: action.email,
         password: action.password,
         isAuthorized: true,
       };
+    case USER_LOGOUT_SUCCESS:
     case USER_AUTH_ERROR:
     case USER_REGISTRATION_ERROR:
       return {

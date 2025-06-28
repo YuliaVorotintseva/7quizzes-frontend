@@ -6,8 +6,10 @@ export const USER_REGISTRATION_FETCH = "USER_REGISTRATION_FETCH";
 export const USER_REGISTRATION_SUCCESS = "USER_REGISTRATION_SUCCESS";
 export const USER_REGISTRATION_ERROR = "USER_REGISTRATION_ERROR";
 
+export const USER_LOGOUT_SUCCESS = "USER_LOGOUT_SUCCESS";
+
 export interface UserState {
-  username: string | null;
+  name: string | null;
   email: string | null;
   password: string | null;
   isAuthorized: boolean;
@@ -15,7 +17,7 @@ export interface UserState {
 
 export interface UserAction {
   type: string;
-  username?: string | null | undefined;
+  name?: string | null | undefined;
   email?: string | null | undefined;
   password?: string | null | undefined;
 }
@@ -40,11 +42,15 @@ export interface UserRegistrationFetchAction extends UserAction {
 
 export interface UserRegistrationSuccessAction extends UserAction {
   type: typeof USER_REGISTRATION_SUCCESS;
-  username: string;
+  name: string;
   email: string;
   password: string;
 }
 
 export interface UserRegistrationErrorAction extends UserAction {
   type: typeof USER_REGISTRATION_ERROR;
+}
+
+export interface UserLogoutSuccessAction extends UserAction {
+  type: typeof USER_LOGOUT_SUCCESS;
 }

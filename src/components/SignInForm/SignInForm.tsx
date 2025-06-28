@@ -25,7 +25,12 @@ const SignInForm = () => {
 
   const onSubmit = async (element: React.FormEvent) => {
     element.preventDefault();
-    await dispatch(login({ email: emailField.value, password: password }));
+    await dispatch(
+      login({
+        email: emailField.value,
+        password: password,
+      }),
+    );
   };
 
   return (

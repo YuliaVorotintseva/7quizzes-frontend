@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import PasswordInput from "../PasswordInput/PasswordInput";
 import Button from "../Button/Button";
 import useFormField from "../../utils/useFormField";
 import { registration } from "../../entities/user/model/userActions";
-import { AppDispatch, RootState } from "../../app/storeTypes";
+import { AppDispatch } from "../../app/storeTypes";
 
 import "./signUpForm.css";
 
@@ -16,23 +16,17 @@ const SignUpForm = () => {
   const emailField = useFormField();
   const usernameField = useFormField();
   const [password, setPassword] = useState<string | null>(null);
-  const { isAuthorized } = useSelector((state: RootState) => state.userReducer);
-
-  useEffect(() => {
-    if (isAuthorized) {
-      navigate("/signin", { replace: true });
-    }
-  }, [isAuthorized]);
 
   const onSubmit = async (element: React.FormEvent) => {
     element.preventDefault();
     await dispatch(
       registration({
-        username: usernameField.value,
+        name: usernameField.value,
         email: emailField.value,
         password: password,
       }),
     );
+    navigate("/signin", { replace: true });
   };
 
   return (
@@ -44,8 +38,8 @@ const SignUpForm = () => {
           id="username"
           className="username"
           type="text"
-          tabIndex={2}
-          pattern="^[a-zA-Z0-9\.\+\-_]{5,}$"
+          tabIndex={1}
+          pattern="^[a-zA-Z0-9\.\+\-_ ]{5,}$"
           {...usernameField}
         />
       </div>
@@ -55,7 +49,7 @@ const SignUpForm = () => {
           id="email"
           className="email"
           type="email"
-          tabIndex={1}
+          tabIndex={2}
           pattern="^[a-zA-Z0-9\.\+\-_]+@[a-z]+\.[a-z]{2,}$"
           {...emailField}
         />

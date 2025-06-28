@@ -3,6 +3,7 @@ import {
   USER_AUTH_ERROR,
   USER_AUTH_FETCH,
   USER_AUTH_SUCCESS,
+  USER_LOGOUT_SUCCESS,
   USER_REGISTRATION_ERROR,
   USER_REGISTRATION_FETCH,
   USER_REGISTRATION_SUCCESS,
@@ -16,7 +17,7 @@ type LoginType = {
 };
 
 type RegistrationType = {
-  username: string | null;
+  name: string | null;
   email: string | null;
   password: string | null;
 };
@@ -50,17 +51,21 @@ export const login =
   };
 
 export const registration =
-  ({ username, email, password }: RegistrationType) =>
+  ({ name, email, password }: RegistrationType) =>
   async (dispatch: Dispatch<UserAction>) => {
     dispatch({
       type: USER_REGISTRATION_FETCH,
     });
 
+    if (name) {
+      localStorage.setItem("name", name);
+    }
+
     try {
       await fetchPOST(
         "signup",
         JSON.stringify({
-          username: username,
+          name: name,
           email: email,
           password: password,
         }),
@@ -68,7 +73,7 @@ export const registration =
 
       dispatch({
         type: USER_REGISTRATION_SUCCESS,
-        username: username,
+        name: name,
         email: email,
         password: password,
       });
@@ -79,3 +84,10 @@ export const registration =
       console.log(error);
     }
   };
+
+export const logout = () => async (dispatch: Dispatch<UserAction>) => {
+  localStorage.removeItem("accessToken");
+  dispatch({
+    type: USER_LOGOUT_SUCCESS,
+  });
+};
