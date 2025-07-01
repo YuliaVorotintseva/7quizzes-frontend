@@ -7,6 +7,7 @@ import PasswordInput from "../PasswordInput/PasswordInput";
 import useFormField from "../../utils/useFormField";
 import { login } from "../../entities/user/model/userActions";
 import { AppDispatch, RootState } from "../../app/storeTypes";
+import { ErrorType } from "../../entities/user/model/actionTypes";
 
 import "./signInForm.css";
 
@@ -16,6 +17,7 @@ const SignInForm = () => {
   const emailField = useFormField();
   const [password, setPassword] = useState<string | null>(null);
   const { isAuthorized } = useSelector((state: RootState) => state.userReducer);
+  const [error, setError] = useState<ErrorType | null>(null);
 
   useEffect(() => {
     if (isAuthorized) {
@@ -25,12 +27,17 @@ const SignInForm = () => {
 
   const onSubmit = async (element: React.FormEvent) => {
     element.preventDefault();
-    await dispatch(
-      login({
-        email: emailField.value,
-        password: password,
-      }),
-    );
+
+    try {
+      await dispatch(
+        login({
+          email: emailField.value,
+          password: password,
+        }),
+      );
+    } catch (error) {
+      setError(error as ErrorType);
+    }
   };
 
   return (
@@ -48,6 +55,9 @@ const SignInForm = () => {
         />
       </div>
       <PasswordInput setPassword={setPassword} />
+      {error && (
+        <p className="error__sign_in">{`Error ${error?.status}: ${error?.message}`}</p>
+      )}
       <Button
         isSubmit={true}
         className="submit__sign_in"

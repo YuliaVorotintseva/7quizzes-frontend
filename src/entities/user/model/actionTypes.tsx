@@ -8,6 +8,21 @@ export const USER_REGISTRATION_ERROR = "USER_REGISTRATION_ERROR";
 
 export const USER_LOGOUT_SUCCESS = "USER_LOGOUT_SUCCESS";
 
+export interface ErrorType {
+  status: number;
+  message: string;
+}
+
+export class CustomError implements ErrorType {
+  status: number;
+  message: string;
+
+  constructor({ status, message }: ErrorType) {
+    this.status = status;
+    this.message = message;
+  }
+}
+
 export interface UserState {
   name: string | null;
   email: string | null;

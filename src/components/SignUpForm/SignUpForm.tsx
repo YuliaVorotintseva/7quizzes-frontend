@@ -7,6 +7,7 @@ import Button from "../Button/Button";
 import useFormField from "../../utils/useFormField";
 import { registration } from "../../entities/user/model/userActions";
 import { AppDispatch } from "../../app/storeTypes";
+import { ErrorType } from "../../entities/user/model/actionTypes";
 
 import "./signUpForm.css";
 
@@ -16,17 +17,23 @@ const SignUpForm = () => {
   const emailField = useFormField();
   const usernameField = useFormField();
   const [password, setPassword] = useState<string | null>(null);
+  const [error, setError] = useState<ErrorType | null>(null);
 
   const onSubmit = async (element: React.FormEvent) => {
     element.preventDefault();
-    await dispatch(
-      registration({
-        name: usernameField.value,
-        email: emailField.value,
-        password: password,
-      }),
-    );
-    navigate("/signin", { replace: true });
+
+    try {
+      await dispatch(
+        registration({
+          name: usernameField.value,
+          email: emailField.value,
+          password: password,
+        }),
+      );
+      navigate("/signin", { replace: true });
+    } catch (error) {
+      setError(error as ErrorType);
+    }
   };
 
   return (
@@ -55,6 +62,9 @@ const SignUpForm = () => {
         />
       </div>
       <PasswordInput setPassword={setPassword} />
+      {error && (
+        <p className="error__sign_up">{`Error ${error?.status}: ${error?.message}`}</p>
+      )}
       <Button
         isSubmit={true}
         className="submit__sign_up"

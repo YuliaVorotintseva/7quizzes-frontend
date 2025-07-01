@@ -52,3 +52,9 @@
 .link__login {
   color: var(--button-active-background-color);
 }
+
+.error__sign_up {
+  align-self: center;
+  margin-top: 15px;
+  color: #d00000;
+}

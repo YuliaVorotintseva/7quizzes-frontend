@@ -17,7 +17,7 @@ type LoginType = {
 };
 
 type RegistrationType = {
-  name: string | null;
+  name: string;
   email: string | null;
   password: string | null;
 };
@@ -36,6 +36,7 @@ export const login =
       );
 
       localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
 
       dispatch({
         type: USER_AUTH_SUCCESS,
@@ -47,6 +48,7 @@ export const login =
         type: USER_AUTH_ERROR,
       });
       console.log(error);
+      throw error;
     }
   };
 
@@ -56,10 +58,7 @@ export const registration =
     dispatch({
       type: USER_REGISTRATION_FETCH,
     });
-
-    if (name) {
-      localStorage.setItem("name", name);
-    }
+    localStorage.setItem("name", name);
 
     try {
       await fetchPOST(
@@ -82,11 +81,15 @@ export const registration =
         type: USER_REGISTRATION_ERROR,
       });
       console.log(error);
+      throw error;
     }
   };
 
 export const logout = () => async (dispatch: Dispatch<UserAction>) => {
   localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  localStorage.removeItem("name");
+
   dispatch({
     type: USER_LOGOUT_SUCCESS,
   });

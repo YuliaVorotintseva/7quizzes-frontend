@@ -49,3 +49,9 @@
 .link__register {
   color: var(--button-active-background-color);
 }
+
+.error__sign_in {
+  align-self: center;
+  margin-top: 15px;
+  color: #d00000;
+}
