@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 
-import "./modal.css";
 import CloseButton from "../CloseButton/CloseButton";
+
+import "./modal.css";
 
 export type ModalProps = {
   isVisible: boolean;

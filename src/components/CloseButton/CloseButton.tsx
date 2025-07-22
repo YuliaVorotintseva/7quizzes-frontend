@@ -6,8 +6,8 @@ export type CloseButtonProps = {
   onClickHandle: () => void;
 };
 
-const CloseButton = (props: CloseButtonProps) => (
-  <button className="button__close" onClick={props.onClickHandle}>
+const CloseButton = ({ onClickHandle }: CloseButtonProps) => (
+  <button className="button__close" onClick={onClickHandle}>
     <svg
       width="18"
       height="18"

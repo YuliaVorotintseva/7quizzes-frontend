@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import "./passwordInput.css";
 import useFormField from "../../utils/useFormField";
+
+import "./passwordInput.css";
 
 type PasswordInputProps = {
   setPassword: (value: string | null) => void;

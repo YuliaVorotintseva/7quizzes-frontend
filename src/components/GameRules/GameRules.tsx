@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../Button/Button";
+import RulesUI from "../../entities/rules/ui/RulesUI";
 
 import "./gameRules.css";
-import RulesUI from "../../entities/rules/ui/RulesUI";
 
 const GameRules = () => {
   const navigate = useNavigate();

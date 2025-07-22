@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from "react";
+
 import "./button.css";
 
 export type Props = {
@@ -9,19 +10,17 @@ export type Props = {
   text: string;
 };
 
-const Button = ({ isSubmit, disabled, className, onClick, text }: Props) => {
-  return (
-    <button
-      type={isSubmit ? "submit" : "button"}
-      className={
-        disabled ? `button ${className} disabled` : `button ${className}`
-      }
-      onClick={disabled ? () => {} : onClick}
-      disabled={disabled ?? false}
-    >
-      {text}
-    </button>
-  );
-};
+const Button = ({ isSubmit, disabled, className, onClick, text }: Props) => (
+  <button
+    type={isSubmit ? "submit" : "button"}
+    className={
+      disabled ? `button ${className} disabled` : `button ${className}`
+    }
+    onClick={disabled ? () => {} : onClick}
+    disabled={disabled ?? false}
+  >
+    {text}
+  </button>
+);
 
 export default Button;

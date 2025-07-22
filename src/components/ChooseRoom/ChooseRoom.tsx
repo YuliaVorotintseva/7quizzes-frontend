@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import ChooseRoomUI from "../../entities/room/ui/ChooseRoomUI";
+import Loader from "../Loader/Loader";
 import { AppDispatch, RootState } from "../../app/storeTypes";
 import { getRooms } from "../../entities/room/model/roomActions";
 
 import "./chooseRoom.css";
-import Loader from "../Loader/Loader";
 
 const ChooseRoom = () => {
   const dispatch = useDispatch<AppDispatch>();

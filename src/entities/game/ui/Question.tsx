@@ -36,19 +36,17 @@ const Question = ({
     }
   }, [correctAnswerId]);
 
-  const answers = question.answers?.map((answer: Answer, key) => {
-    return (
-      <AnswerComponent
-        id={answer.id}
-        text={answer.text}
-        key={key}
-        isCorrect={answer.id === correctAnswerId}
-        isSelected={answer.id === selectedAnswerId}
-        isDisabled={selectedAnswerId !== null}
-        selectAnswer={setSelectedAnswerId}
-      />
-    );
-  });
+  const answers = question.answers?.map((answer: Answer, key) => (
+    <AnswerComponent
+      id={answer.id}
+      text={answer.text}
+      key={key}
+      isCorrect={answer.id === correctAnswerId}
+      isSelected={answer.id === selectedAnswerId}
+      isDisabled={selectedAnswerId !== null}
+      selectAnswer={setSelectedAnswerId}
+    />
+  ));
 
   return (
     <div className="question">

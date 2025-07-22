@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Game from "../pages/Game/Game";
 import GameStart from "../pages/GameStart/GameStart";
@@ -9,7 +10,6 @@ import SignInPage from "../pages/SignInPage/SignInPage";
 import CreateRoomPage from "../pages/CreateRoom/CreateRoomPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import ChooseRoomPage from "../pages/ChooseRoomPage/ChooseRoomPage";
-import { useSelector } from "react-redux";
 import { RootState } from "./storeTypes";
 
 const Router = () => {
